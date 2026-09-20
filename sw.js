@@ -1,5 +1,18 @@
-const CACHE = 'carousel-studio-v6';
-const ASSETS = ['./', './index.html', './styles.css', './app.js', './fonts-cyrillic.json', './manifest.webmanifest', './favicon.svg'];
+const CACHE = 'carousel-studio-v10';
+const ASSETS = [
+  './',
+  './index.html',
+  './styles.css',
+  './app.js',
+  './fonts-cyrillic.json',
+  './manifest.webmanifest',
+  './favicon.svg',
+  './assets/vendor/jszip.min.js',
+  './assets/editorial/portrait-sea.webp',
+  './assets/editorial/rocky-coast.webp',
+  './assets/editorial/botanical-shadow.webp',
+  './assets/editorial/sea-sunset.webp'
+];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
@@ -25,5 +38,13 @@ self.addEventListener('fetch', event => {
     );
     return;
   }
-  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request)));
+  event.respondWith(
+    fetch(event.request)
+      .then(response => {
+        const copy = response.clone();
+        caches.open(CACHE).then(cache => cache.put(event.request, copy));
+        return response;
+      })
+      .catch(() => caches.match(event.request))
+  );
 });

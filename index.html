@@ -4,236 +4,90 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-  <meta name="theme-color" content="#0d0d12">
-  <meta name="description" content="Мобильная студия кириллических каруселей из собственных фотографий.">
-  <title>Студия каруселей</title>
+  <meta name="theme-color" content="#0b0e0e">
+  <meta name="description" content="Мобильная студия кириллических каруселей для Instagram.">
+  <title>Carousel Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700&family=Oswald:wght@500;600&family=PT+Sans:wght@400;700&family=PT+Serif:wght@400;700&family=Prata&family=Rubik:wght@400;500;600;700&family=Unbounded:wght@500;600&family=Yeseva+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700&family=Finlandica:ital,wght@0,400..700;1,400..700&family=Golos+Text:wght@400..900&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400..800&family=Piazzolla:ital,opsz,wght@0,8..30,400..700;1,8..30,400..700&family=Prata&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,300..600,0..1,0" rel="stylesheet" media="print" onload="this.media='all'">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=10">
 </head>
 <body>
-  <div class="ambient ambient-one" aria-hidden="true"></div>
-  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <main class="studio-shell">
+    <section class="screen is-active" id="screenTinder" aria-labelledby="tinderHeading">
+      <header class="tool-header">
+        <button class="icon-button" id="openSplit" type="button" aria-label="Вернуться к разбивке текста"><span class="material-symbols-rounded" aria-hidden="true">arrow_back</span></button>
+        <div class="catalog-progress"><strong id="pairProgress">1 из 28</strong><div class="progress-dots" id="progressDots" aria-hidden="true"></div></div>
+        <button class="undo-button" id="undoChoice" type="button" disabled><span class="material-symbols-rounded" aria-hidden="true">undo</span><span>Вернуть</span></button>
+      </header>
 
-  <main class="app-shell">
-    <header class="topbar">
-      <button class="brand" type="button" data-action="home" aria-label="Вернуться в начало">
-        <span class="brand-mark" aria-hidden="true">С</span>
-        <span>Студия</span>
+      <button class="split-summary" id="editSplit" type="button">
+        <span class="split-summary-title"><b id="cardCount">7 карточек</b><u>изменить разбивку</u><span class="material-symbols-rounded" aria-hidden="true">chevron_right</span></span>
+        <span class="mini-storyboard" id="miniStoryboard" aria-hidden="true"></span>
       </button>
-      <div class="progress-wrap" aria-label="Прогресс">
-        <span id="progressText">1 из 4</span>
-        <div class="progress-track" aria-hidden="true"><i id="progressBar"></i></div>
-      </div>
-    </header>
 
-    <section class="stage is-active" id="stageSetup" aria-labelledby="setupTitle">
-      <div class="stage-copy">
-        <p class="eyebrow">Шаг 1 · Ваш материал</p>
-        <h1 id="setupTitle">Сначала — ваши фотографии</h1>
-        <p>Добавьте 3–5 кадров. Они останутся только в этой вкладке.</p>
-      </div>
-
-      <div class="work-grid">
-        <div class="preview-column">
-          <article class="poster preview-poster" id="setupPoster" aria-label="Предпросмотр обложки">
-            <div class="poster-image placeholder" id="setupImage"></div>
-            <div class="poster-shade" id="setupShade"></div>
-            <div class="poster-content">
-              <span class="poster-kicker">Личный стиль</span>
-              <h2 id="setupHeadline">Ваш голос уже имеет значение</h2>
-              <p id="setupSubtitle">Соберите визуальный стиль, который действительно похож на вас.</p>
-              <span class="poster-index">01 / 05</span>
+      <h1 class="sr-only" id="tinderHeading">Примерка кириллических шрифтов</h1>
+      <div class="fitting-room">
+        <div class="canvas-column">
+          <article class="ig-canvas" id="tinderCanvas" tabindex="0" aria-label="Вариант шрифтов. Свайпните или используйте кнопки ниже.">
+            <div class="canvas-photo" id="canvasPhoto"></div><div class="canvas-shade" id="canvasShade"></div>
+            <div class="safe-guides" id="safeGuides" hidden aria-hidden="true"></div>
+            <div class="canvas-copy">
+              <div class="canvas-meta"><span id="canvasKicker">Технологии<br>для людей</span><span id="canvasIndex">01 / 07</span></div>
+              <div class="canvas-headline" id="canvasHeadline"><span id="headlineMain"></span><em id="headlineAccent"></em></div>
+              <span class="canvas-rule" aria-hidden="true"></span><span class="canvas-footnote">Личная свобода начинается с ясности.</span>
             </div>
+            <span class="swipe-stamp stamp-no" aria-hidden="true">НЕ МОЁ</span><span class="swipe-stamp stamp-yes" aria-hidden="true">МОЁ</span>
           </article>
+          <div class="pair-caption"><div><strong id="pairName">Finlandica Headline + Piazzolla</strong><span id="pairCharacter">Редакционный голос</span></div><button class="quiet-button" id="fontInfo" type="button"><span class="material-symbols-rounded" aria-hidden="true">info</span> О шрифте</button></div>
         </div>
 
-        <div class="control-panel">
-          <div class="field-group">
-            <label for="photoInput">Фотографии</label>
-            <input id="photoInput" type="file" accept="image/*" multiple hidden>
-            <button class="upload-button" id="uploadButton" type="button">
-              <span class="upload-icon" aria-hidden="true">＋</span>
-              <span><strong>Выбрать 3–5 фото</strong><small>JPG, PNG или HEIC, если браузер поддерживает</small></span>
-            </button>
-            <div class="thumbs" id="photoThumbs" aria-live="polite"></div>
-            <p class="field-hint" id="photoHint">Пока можно посмотреть пример на готовом фоне.</p>
-          </div>
-
-          <div class="field-grid">
-            <label class="text-field">Заголовок
-              <input id="headlineInput" value="Ваш голос уже имеет значение" maxlength="90">
-            </label>
-            <label class="text-field">Подзаголовок
-              <textarea id="subtitleInput" rows="3" maxlength="180">Соберите визуальный стиль, который действительно похож на вас.</textarea>
-            </label>
-          </div>
-
-          <label class="range-field" for="setupBrightness">
-            <span><b>Фото</b><output id="setupBrightnessValue">Без изменений</output></span>
-            <span class="range-labels" aria-hidden="true"><i>Темнее</i><i>Светлее</i></span>
-            <input id="setupBrightness" type="range" min="55" max="125" value="90">
-          </label>
-
-          <button class="primary-button" id="startTinder" type="button" disabled>К выбору шрифтов <span aria-hidden="true">→</span></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="stage" id="stageTinder" aria-labelledby="tinderTitle" hidden>
-      <div class="stage-copy compact-copy">
-        <button class="back-button" id="backToSetup" type="button"><span aria-hidden="true">←</span> Назад к фотографиям</button>
-        <p class="eyebrow">Шаг 2 · Шрифтовой Tinder</p>
-        <h1 id="tinderTitle">Что похоже на вас?</h1>
-        <p>Свайпните вправо — «моё», влево — «не моё».</p>
-      </div>
-
-      <div class="tinder-layout">
-        <div class="deck" id="fontDeck" aria-live="polite">
-          <article class="poster tinder-card" id="tinderCard" tabindex="0" aria-label="Вариант шрифтов. Используйте кнопки или стрелки клавиатуры.">
-            <div class="poster-image" id="tinderImage"></div>
-            <div class="poster-shade"></div>
-            <div class="poster-content">
-              <span class="poster-kicker">Личный стиль</span>
-              <h2 id="tinderHeadline">Ваш голос уже имеет значение</h2>
-              <p id="tinderSubtitle">Соберите визуальный стиль, который действительно похож на вас.</p>
-              <span class="poster-index" id="pairName">Пара шрифтов</span>
-            </div>
-            <span class="swipe-stamp stamp-no" aria-hidden="true">НЕ МОЁ</span>
-            <span class="swipe-stamp stamp-yes" aria-hidden="true">МОЁ</span>
-          </article>
-          <div class="deck-ghost ghost-one" aria-hidden="true"></div>
-          <div class="deck-ghost ghost-two" aria-hidden="true"></div>
-        </div>
-
-        <div class="tinder-controls">
-          <button class="choice-button choice-no" id="rejectFont" type="button"><span aria-hidden="true">←</span> Не моё</button>
-          <div class="pair-progress"><b id="pairCounter">1 / 12</b><span>каталог</span></div>
-          <button class="choice-button choice-yes" id="likeFont" type="button">Моё <span aria-hidden="true">→</span></button>
-        </div>
-        <button class="finish-tinder" id="finishTinder" type="button" hidden>Готово · выбрать из понравившихся</button>
-      </div>
-    </section>
-
-    <section class="stage" id="stageFinalists" aria-labelledby="finalistsTitle" hidden>
-      <div class="stage-copy compact-copy">
-        <p class="eyebrow">Финальный выбор</p>
-        <h1 id="finalistsTitle">Ваши шрифты</h1>
-        <p id="finalistsDescription">Выберите пару, с которой соберём карусель.</p>
-      </div>
-      <div class="finalist-grid" id="finalistGrid"></div>
-      <div class="empty-finalists" id="emptyFinalists" hidden>
-        <div class="empty-symbol" aria-hidden="true">↻</div>
-        <h2>Пока ничего не откликнулось</h2>
-        <p>Это нормально. Измените фотографию или яркость и пройдите примерку ещё раз.</p>
-        <button class="secondary-button" id="retryTinder" type="button">Попробовать ещё раз</button>
-      </div>
-    </section>
-
-    <section class="stage" id="stageCarousel" aria-labelledby="carouselTitle" hidden>
-      <div class="stage-copy compact-copy carousel-heading">
-        <div>
-          <button class="back-button" id="backToFinalists" type="button"><span aria-hidden="true">←</span> Поменять шрифт</button>
-          <p class="eyebrow">Шаг 4 · Готовая карусель</p>
-          <h1 id="carouselTitle">Отредактируйте под себя</h1>
-        </div>
-        <div class="style-badge" id="chosenPairBadge">Ваш стиль</div>
-      </div>
-
-      <div class="carousel-workspace">
-        <div class="carousel-preview-area">
-          <article class="poster carousel-poster" id="carouselPoster" aria-label="Редактируемая карточка карусели">
-            <div class="poster-image" id="carouselImage"></div>
-            <div class="poster-shade" id="carouselShade"></div>
-            <div class="poster-content">
-              <span class="poster-kicker" id="carouselKicker">Личный стиль</span>
-              <h2 id="carouselHeadline">Ваш голос уже имеет значение</h2>
-              <p id="carouselBody">Начните с того, что действительно важно именно вам.</p>
-              <span class="poster-index" id="carouselIndex">01 / 05</span>
-            </div>
-          </article>
-          <div class="slide-strip" id="slideStrip" aria-label="Карточки карусели"></div>
-        </div>
-
-        <aside class="editor-panel">
-          <div class="editor-section">
-            <span class="section-label">Карточка <b id="activeSlideNumber">1</b> из 5</span>
-            <label class="text-field">Заголовок
-              <textarea id="slideHeadlineInput" rows="3" maxlength="120"></textarea>
-            </label>
-            <label class="text-field">Основной текст
-              <textarea id="slideBodyInput" rows="4" maxlength="260"></textarea>
-            </label>
-            <details class="fine-tune">
-              <summary>Размер, положение и цвет текста</summary>
-              <div class="fine-tune-body">
-                <label class="range-field compact-range" for="headlineSize">
-                  <span><b>Размер заголовка</b><output id="headlineSizeValue">100%</output></span>
-                  <input id="headlineSize" type="range" min="65" max="130" value="100">
-                </label>
-                <p class="drag-hint">Текст также можно двигать пальцем прямо на карточке.</p>
-                <label class="range-field compact-range" for="textHorizontal">
-                  <span><b>По горизонтали</b><output id="textHorizontalValue">По центру</output></span>
-                  <input id="textHorizontal" type="range" min="-25" max="25" value="0">
-                </label>
-                <label class="range-field compact-range" for="textVertical">
-                  <span><b>По вертикали</b><output id="textVerticalValue">На месте</output></span>
-                  <input id="textVertical" type="range" min="-45" max="20" value="0">
-                </label>
-                <div class="color-control-grid">
-                  <label class="color-control">Заголовок <input id="headlineColor" type="color" value="#ffffff"></label>
-                  <label class="color-control">Основной текст <input id="bodyColor" type="color" value="#ffffff"></label>
-                </div>
-                <button class="mini-button" id="resetTextColors" type="button">Вернуть цвета палитры</button>
-              </div>
-            </details>
-          </div>
-
-          <div class="editor-section">
-            <span class="section-label">Фотография</span>
-            <div class="photo-picker" id="carouselPhotoPicker"></div>
-            <label class="range-field compact-range" for="slideBrightness">
-              <span><b>Яркость</b><output id="slideBrightnessValue">Без изменений</output></span>
-              <input id="slideBrightness" type="range" min="55" max="125" value="90">
-            </label>
-            <label class="range-field compact-range" for="slideShade">
-              <span><b>Затемнение под текстом</b><output id="slideShadeValue">40%</output></span>
-              <input id="slideShade" type="range" min="0" max="75" value="40">
-            </label>
-          </div>
-
-          <div class="editor-section">
-            <span class="section-label">Палитра</span>
-            <div class="palette-row" id="paletteRow"></div>
-            <details class="fine-tune custom-palette">
-              <summary>Добавить свою палитру</summary>
-              <div class="fine-tune-body">
-                <div class="color-control-grid palette-color-grid">
-                  <label class="color-control">Тёмный <input id="customDark" type="color" value="#111118"></label>
-                  <label class="color-control">Светлый <input id="customLight" type="color" value="#f6f7f2"></label>
-                  <label class="color-control">Главный <input id="customAccent" type="color" value="#6657ff"></label>
-                  <label class="color-control">Дополнительный <input id="customExtra" type="color" value="#b6ff66"></label>
-                </div>
-                <button class="secondary-button compact-button" id="applyCustomPalette" type="button">Применить мою палитру</button>
-              </div>
-            </details>
-          </div>
-
-          <div class="export-actions">
-            <button class="secondary-button" id="downloadCurrent" type="button">Скачать эту карточку</button>
-            <button class="primary-button" id="downloadAll" type="button">Скачать всю карусель <span aria-hidden="true">↓</span></button>
-            <p>Пять PNG 1080×1350 будут собраны в один ZIP-файл.</p>
-          </div>
+        <aside class="canvas-tools" aria-label="Настройки примерки">
+          <div class="format-chip"><strong>Instagram · 4:5</strong><span>1080 × 1350</span></div>
+          <label class="switch-row" for="guideToggle"><span>Границы</span><input id="guideToggle" type="checkbox"><i aria-hidden="true"></i></label>
+          <label class="vertical-control" for="fontSizeRange"><span><b>Размер текста</b><span class="material-symbols-rounded" aria-hidden="true">text_fields</span></span><input id="fontSizeRange" type="range" min="72" max="124" value="100"></label>
+          <label class="vertical-control" for="brightnessRange"><span><b>Фото</b><span class="material-symbols-rounded" aria-hidden="true">light_mode</span></span><input id="brightnessRange" type="range" min="55" max="125" value="92"></label>
+          <div class="palette-tools" aria-label="Цветовая палитра"><span>Цвета</span><div id="paletteSwatches"></div><button class="add-color" id="customPaletteButton" type="button" aria-label="Добавить свою палитру"><span class="material-symbols-rounded" aria-hidden="true">add</span></button></div>
         </aside>
       </div>
+
+      <div class="slide-filmstrip" id="slideFilmstrip" aria-label="Карточки карусели"></div>
+      <div class="tinder-actions"><button class="decision decision-no" id="rejectFont" type="button"><span class="material-symbols-rounded" aria-hidden="true">close</span>Не моё</button><button class="decision decision-yes" id="likeFont" type="button"><span class="material-symbols-rounded filled" aria-hidden="true">favorite</span>Моё</button></div>
+      <button class="compare-button" id="compareSelected" type="button" disabled><span class="material-symbols-rounded" aria-hidden="true">filter_none</span>Сравнить выбранные · <b id="likedCount">0</b></button>
+      <p class="swipe-help"><span>← Свайпай влево, если не твоё</span><span>Свайпай вправо, если моё →</span></p>
+    </section>
+
+    <section class="screen split-screen" id="screenSplit" hidden aria-labelledby="splitHeading">
+      <header class="section-header"><button class="icon-button" id="backToTinder" type="button" aria-label="Назад к примерке"><span class="material-symbols-rounded" aria-hidden="true">arrow_back</span></button><div><p>Шаг 1</p><h1 id="splitHeading">Разбивка текста</h1></div><button class="text-button" id="confirmSplit" type="button">Готово</button></header>
+      <div class="split-workspace">
+        <section class="source-panel">
+          <label for="sourceText">Вставьте текст единым полотном</label><textarea id="sourceText" rows="10"></textarea>
+          <div class="source-actions"><button class="primary-action" id="autoSplit" type="button"><span class="material-symbols-rounded" aria-hidden="true">auto_awesome</span>Предложить разбивку</button><button class="secondary-action" id="addTextCard" type="button"><span class="material-symbols-rounded" aria-hidden="true">add</span>Текстовая карточка</button></div>
+          <p>Система не переписывает текст — только предлагает границы. Итоговое количество частей становится количеством карточек, максимум 10.</p>
+          <div class="photo-source"><div><strong>Фотографии</strong><span>Можно добавить до 10. Текстовых карточек может быть больше, чем фото.</span></div><input id="photoInput" type="file" accept="image/*" multiple hidden><button class="secondary-action" id="uploadPhotos" type="button"><span class="material-symbols-rounded" aria-hidden="true">add_photo_alternate</span>Добавить фото</button><div class="photo-strip" id="photoStrip"></div></div>
+        </section>
+        <section class="segment-panel"><div class="segment-heading"><div><span>Предложенная структура</span><strong id="segmentCount">7 карточек</strong></div><span id="densityStatus">Плотность нормальная</span></div><div class="segment-list" id="segmentList"></div></section>
+      </div>
+    </section>
+
+    <section class="screen compare-screen" id="screenCompare" hidden aria-labelledby="compareHeading">
+      <header class="section-header"><button class="icon-button" id="backFromCompare" type="button" aria-label="Назад к примерке"><span class="material-symbols-rounded" aria-hidden="true">arrow_back</span></button><div><p>Финалисты</p><h1 id="compareHeading">Сравните выбранные</h1></div><span></span></header>
+      <p class="compare-intro">Все варианты показаны на одной фотографии и одном тексте — разница только в типографике.</p><div class="finalist-grid" id="finalistGrid"></div>
+    </section>
+
+    <section class="screen editor-screen" id="screenEditor" hidden aria-labelledby="editorHeading">
+      <header class="section-header"><button class="icon-button" id="backToCompare" type="button" aria-label="Поменять шрифт"><span class="material-symbols-rounded" aria-hidden="true">arrow_back</span></button><div><p>Шаг 3</p><h1 id="editorHeading">Редактор карусели</h1></div><button class="text-button" id="downloadAll" type="button">Скачать</button></header>
+      <div class="editor-workspace"><div><article class="ig-canvas editor-canvas" id="editorCanvas"><div class="canvas-photo" id="editorPhoto"></div><div class="canvas-shade" id="editorShade"></div><div class="canvas-copy"><div class="canvas-meta"><span id="editorKicker">Личный опыт</span><span id="editorIndex">01 / 07</span></div><div class="canvas-headline" id="editorHeadline"></div><span class="canvas-rule"></span><span class="canvas-footnote" id="editorBody">Текст карточки</span></div></article><div class="slide-filmstrip" id="editorFilmstrip"></div></div>
+        <aside class="editor-controls"><label>Текст карточки<textarea id="editorText" rows="5"></textarea></label><label>Размер текста<input id="editorFontSize" type="range" min="72" max="124" value="100"></label><label>Яркость фото<input id="editorBrightness" type="range" min="55" max="125" value="92"></label><label>Затемнение<input id="editorShadeRange" type="range" min="0" max="75" value="42"></label><div class="editor-buttons"><button class="secondary-action" id="downloadCurrent" type="button">Скачать карточку</button><button class="primary-action" id="downloadAllSecondary" type="button">Скачать всю карусель</button></div><p>PNG 1080 × 1350. Все карточки сохраняются в одинаковом формате 4:5.</p></aside></div>
     </section>
   </main>
 
+  <dialog class="info-dialog" id="infoDialog"><button class="dialog-close" id="closeInfo" type="button" aria-label="Закрыть"><span class="material-symbols-rounded" aria-hidden="true">close</span></button><p class="dialog-label">Текущая пара</p><h2 id="dialogPairName"></h2><p id="dialogPairText"></p></dialog>
+  <dialog class="palette-dialog" id="paletteDialog"><button class="dialog-close" id="closePalette" type="button" aria-label="Закрыть"><span class="material-symbols-rounded" aria-hidden="true">close</span></button><p class="dialog-label">Своя палитра</p><h2>Четыре цвета бренда</h2><div class="custom-colors"><label>Светлый<input id="customLight" type="color" value="#f3ecdf"></label><label>Акцент<input id="customAccent" type="color" value="#8c2f39"></label><label>Спокойный<input id="customMuted" type="color" value="#6a6a5d"></label><label>Тёмный<input id="customDark" type="color" value="#252a2f"></label></div><button class="primary-action" id="applyCustomPalette" type="button">Применить</button></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-  <script src="./app.js"></script>
+  <script src="./assets/vendor/jszip.min.js"></script><script src="./app.js?v=10"></script>
 </body>
 </html>
