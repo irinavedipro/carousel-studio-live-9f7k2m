@@ -1,5 +1,16 @@
 const $ = selector => document.querySelector(selector);
-const $$ = selector => [...document.querySelectorAll(selector)];
+const $$ = (selector,root=document) => [...root.querySelectorAll(selector)];
+
+const ICON_GLYPHS = {
+  add: '+', add_photo_alternate: '▣+', arrow_back: '←', arrow_forward: '→', auto_awesome: '✦',
+  chevron_right: '›', close: '×', content_copy: '▣', delete: '⌫', favorite: '♥',
+  format_align_left: '≡', format_align_center: '≡', format_align_right: '≡', image: '▣', info: 'ⓘ',
+  ios_share: '↥', palette: '◉', text_fields: 'Tt', undo: '↶'
+};
+$$('.material-symbols-rounded').forEach(icon => {
+  icon.dataset.glyph = ICON_GLYPHS[icon.textContent.trim()] || '•';
+  icon.setAttribute('aria-hidden', 'true');
+});
 
 const BUILT_IN_PHOTOS = [
   { url: './assets/editorial/portrait-sea.webp', name: 'Портрет у моря' },
@@ -9,9 +20,9 @@ const BUILT_IN_PHOTOS = [
 ];
 
 const FONT_PAIRS = [
-  { head: 'Finlandica', body: 'Piazzolla', weight: 700, name: 'Finlandica Headline + Piazzolla', character: 'Современная пресса' },
+  { head: 'Finlandica', body: 'Piazzolla', weight: 700, name: 'Finlandica + Piazzolla', character: 'Современная пресса' },
   { head: 'Prata', body: 'Onest', weight: 400, name: 'Prata + Onest', character: 'Спокойный premium' },
-  { head: 'Cormorant Garamond', body: 'Manrope', weight: 700, name: 'Cormorant Garamond + Manrope', character: 'Fashion editorial' },
+  { head: 'Cormorant Garamond', body: 'Manrope', weight: 700, name: 'Cormorant + Manrope', character: 'Fashion editorial' },
   { head: 'Literata', body: 'Golos Text', weight: 650, name: 'Literata + Golos Text', character: 'Авторский журнал' },
   { head: 'Piazzolla', body: 'Commissioner', weight: 650, name: 'Piazzolla + Commissioner', character: 'Интеллектуальный и живой' },
   { head: 'Bona Nova', body: 'Onest', weight: 700, name: 'Bona Nova + Onest', character: 'Современная классика' },
@@ -22,10 +33,10 @@ const FONT_PAIRS = [
   { head: 'Shafarik', body: 'Onest', weight: 400, name: 'Shafarik + Onest', character: 'Культурный и необычный' },
   { head: 'Unbounded', body: 'Literata', weight: 650, name: 'Unbounded + Literata', character: 'Энергичный digital editorial' },
   { head: 'Science Gothic', body: 'Literata', weight: 700, name: 'Science Gothic + Literata', character: 'Технологичный журнал' },
-  { head: 'Alumni Sans Pinstripe', body: 'Literata', weight: 400, name: 'Alumni Sans Pinstripe + Literata', character: 'Хрупкая высокая типографика' },
+  { head: 'Alumni Sans Pinstripe', body: 'Literata', weight: 400, name: 'Alumni Sans + Literata', character: 'Хрупкая высокая типографика' },
   { head: 'Geologica', body: 'Bona Nova', weight: 700, name: 'Geologica + Bona Nova', character: 'Экспертность без канцелярита' },
-  { head: 'Sofia Sans Condensed', body: 'Literata', weight: 700, name: 'Sofia Sans Condensed + Literata', character: 'Плотная журнальная обложка' },
-  { head: 'Wix Madefor Display', body: 'Cormorant Garamond', weight: 700, name: 'Wix Madefor Display + Cormorant', character: 'Чистый современный fashion' },
+  { head: 'Sofia Sans Condensed', body: 'Literata', weight: 700, name: 'Sofia Sans + Literata', character: 'Плотная журнальная обложка' },
+  { head: 'Wix Madefor Display', body: 'Cormorant Garamond', weight: 700, name: 'Wix Madefor + Cormorant', character: 'Чистый современный fashion' },
   { head: 'Commissioner', body: 'Prata', weight: 700, name: 'Commissioner + Prata', character: 'Уверенный персональный бренд' },
   { head: 'Tektur', body: 'Manrope', weight: 650, name: 'Tektur + Manrope', character: 'Tech и AI' },
   { head: 'Handjet', body: 'Onest', weight: 650, name: 'Handjet + Onest', character: 'Эксперимент и цифра' },
@@ -35,76 +46,110 @@ const FONT_PAIRS = [
   { head: 'Climate Crisis', body: 'Onest', weight: 400, name: 'Climate Crisis + Onest', character: 'Редкий акцент' },
   { head: 'Kablammo', body: 'Onest', weight: 400, name: 'Kablammo + Onest', character: 'Игровая энергия' },
   { head: 'Oi', body: 'Onest', weight: 400, name: 'Oi + Onest', character: 'Ударный заголовок' },
-  { head: 'Rubik Marker Hatch', body: 'Onest', weight: 400, name: 'Rubik Marker Hatch + Onest', character: 'Маркер и процесс' },
+  { head: 'Rubik Marker Hatch', body: 'Onest', weight: 400, name: 'Rubik Marker + Onest', character: 'Маркер и процесс' },
   { head: 'Monomakh', body: 'Commissioner', weight: 400, name: 'Monomakh + Commissioner', character: 'Культурный акцент' }
 ];
 
 const PALETTES = [
-  { name: 'Бумага и вино', colors: ['#f3ecdf', '#8c2f39', '#6a6a5d', '#252a2f'] },
+  { name: 'Бумага и вино', colors: ['#f3ecdf', '#963344', '#6a6a5d', '#252a2f'] },
   { name: 'Море и камень', colors: ['#e9ece8', '#547389', '#7d7869', '#17232a'] },
   { name: 'Шафран', colors: ['#f4e6cb', '#c66b33', '#65705f', '#26201d'] },
   { name: 'Чернила', colors: ['#f0f0eb', '#48505c', '#7d242c', '#101313'] }
 ];
 
-const DEFAULT_SEGMENTS = [
-  'Личная свобода начинается с ясности.',
-  'Система должна помогать, а не наказывать.',
-  'Маленькие шаги меняют всё.',
-  'Я выбираю себя каждый день.',
-  'Больше жизни в моменте.',
-  'И это только начало.',
-  'В гармонии с собой.'
-];
-
-const SLIDE_RECIPES = ['photo', 'text', 'coast', 'light', 'sea', 'sunset', 'dark'];
-const PHOTO_INDEXES = [0, null, 1, 2, 1, 3, 2];
-const DRAFT_KEY = 'carousel-studio-1.1-draft';
+const DEMO_TEXT = 'Личная свобода начинается с ясности. Система должна помогать, а не наказывать. Маленькие шаги меняют всё. Я выбираю себя каждый день. Больше жизни в моменте. И это только начало. В гармонии с собой.';
+const DRAFT_KEY = 'carousel-studio-1.2-draft';
 const loadedFonts = new Set();
+let slideSeed = 1;
+let saveUrls = [];
 
 const state = {
-  segments: [...DEFAULT_SEGMENTS],
-  sourceText: DEFAULT_SEGMENTS.join(' '),
-  photos: [...BUILT_IN_PHOTOS],
+  sourceText: '',
+  photos: [],
+  coverPhotoIndex: 0,
+  textOnly: false,
+  isDemo: false,
+  slides: [],
   activeSlide: 0,
   pairIndex: 0,
   liked: [],
   choiceHistory: [],
-  selectedPair: 0,
-  fontSize: 100,
-  brightness: 92,
-  shade: 42,
-  showGuides: false,
+  selectedPair: null,
   paletteIndex: 0,
-  pointerStart: null
+  selectedBlock: 'main',
+  showGuides: true,
+  pointerStart: null,
+  drag: null,
+  replaceSlide: null
 };
 
-function restoreDraft() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
-    if (!saved) return;
-    if (Array.isArray(saved.segments) && saved.segments.length) state.segments = saved.segments.slice(0, 10);
-    if (typeof saved.sourceText === 'string') state.sourceText = saved.sourceText;
-    if (Array.isArray(saved.liked)) state.liked = saved.liked.filter(index => Number.isInteger(index) && FONT_PAIRS[index]);
-    ['pairIndex', 'activeSlide', 'fontSize', 'brightness', 'shade', 'paletteIndex'].forEach(key => {
-      if (Number.isFinite(saved[key])) state[key] = saved[key];
-    });
-  } catch (error) {
-    console.warn('Черновик не восстановлен:', error);
-  }
+function activePhotos() { return state.isDemo ? BUILT_IN_PHOTOS : state.photos; }
+function currentPair() { return FONT_PAIRS[state.pairIndex % FONT_PAIRS.length]; }
+function chosenPair() { return FONT_PAIRS[state.selectedPair ?? state.pairIndex] || FONT_PAIRS[0]; }
+function currentPalette() { return PALETTES[state.paletteIndex % PALETTES.length]; }
+function currentSlide() { return state.slides[state.activeSlide] || null; }
+function stripTerminalPeriod(text) { return String(text || '').replace(/\s*\.\s*$/u, '').trim(); }
+function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char])); }
+function cardWord(number) { if (number % 10 === 1 && number % 100 !== 11) return 'карточка'; if ([2,3,4].includes(number % 10) && ![12,13,14].includes(number % 100)) return 'карточки'; return 'карточек'; }
+
+function splitHeadline(text) {
+  const clean = stripTerminalPeriod(text);
+  const explicit = clean.split(/\n+/).map(part => part.trim()).filter(Boolean);
+  if (explicit.length > 1) return [explicit[0], explicit.slice(1).join('\n')];
+  const comma = clean.indexOf(',');
+  if (comma > 10 && comma < clean.length - 4) return [clean.slice(0, comma + 1), clean.slice(comma + 1).trim()];
+  const words = clean.split(/\s+/).filter(Boolean);
+  if (words.length < 5) return [clean, ''];
+  const cut = Math.max(2, Math.ceil(words.length * .58));
+  return [words.slice(0, cut).join(' '), words.slice(cut).join(' ')];
+}
+
+function makeSlide(text, photoIndex = null) {
+  const [main, accent] = splitHeadline(text);
+  return {
+    id: `slide-${Date.now()}-${slideSeed++}`,
+    originalText: String(text || '').trim(),
+    photoIndex,
+    brightness: 92,
+    shade: 46,
+    blocks: {
+      main: { text: main, x: 8, y: 56, width: 84, size: 112, color: '#ffffff', align: 'left' },
+      accent: { text: accent, x: 8, y: 74, width: 84, size: 88, color: '#ffffff', align: 'left' }
+    }
+  };
+}
+
+function segmentText(text) {
+  const clean = String(text || '').replace(/\r/g, '').trim();
+  if (!clean) return [];
+  const forced = clean.split(/\n\s*---\s*\n/).map(part => part.trim()).filter(Boolean);
+  if (forced.length > 1) return forced.slice(0, 10);
+  const paragraphs = clean.split(/\n{2,}/).map(part => part.trim()).filter(Boolean);
+  if (paragraphs.length > 1 && paragraphs.length <= 10) return paragraphs;
+  const segmenter = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter('ru', { granularity: 'sentence' }) : null;
+  const sentences = segmenter ? [...segmenter.segment(clean)].map(item => item.segment.trim()).filter(Boolean) : clean.match(/[^.!?]+[.!?]+|[^.!?]+$/g)?.map(item => item.trim()) || [clean];
+  if (sentences.length <= 10) return sentences;
+  const result = [];
+  const target = Math.ceil(sentences.length / 10);
+  for (let index = 0; index < sentences.length; index += target) result.push(sentences.slice(index, index + target).join(' '));
+  return result.slice(0, 10);
+}
+
+function createSlides(parts) {
+  const photos = activePhotos();
+  state.slides = parts.slice(0,10).map((part, index) => makeSlide(part, state.textOnly ? null : photos.length ? (state.coverPhotoIndex + index) % photos.length : null));
+  state.activeSlide = 0;
+}
+
+function applyTextToSlide(slide, text) {
+  slide.originalText = String(text || '').trim();
+  const [main, accent] = splitHeadline(slide.originalText);
+  slide.blocks.main.text = main;
+  slide.blocks.accent.text = accent;
 }
 
 function saveDraft() {
-  const payload = {
-    segments: state.segments,
-    sourceText: state.sourceText,
-    liked: state.liked,
-    pairIndex: state.pairIndex,
-    activeSlide: state.activeSlide,
-    fontSize: state.fontSize,
-    brightness: state.brightness,
-    shade: state.shade,
-    paletteIndex: state.paletteIndex
-  };
+  const payload = { sourceText: state.sourceText, textOnly: state.textOnly, isDemo: state.isDemo, slides: state.slides, pairIndex: state.pairIndex, liked: state.liked, selectedPair: state.selectedPair, paletteIndex: state.paletteIndex };
   localStorage.setItem(DRAFT_KEY, JSON.stringify(payload));
 }
 
@@ -113,14 +158,15 @@ function showToast(message) {
   toast.textContent = message;
   toast.classList.add('is-visible');
   clearTimeout(showToast.timer);
-  showToast.timer = setTimeout(() => toast.classList.remove('is-visible'), 2100);
+  showToast.timer = setTimeout(() => toast.classList.remove('is-visible'), 2400);
 }
 
 function showScreen(name) {
-  const map = { tinder: '#screenTinder', split: '#screenSplit', compare: '#screenCompare', editor: '#screenEditor' };
+  const map = { start: '#screenStart', split: '#screenSplit', tinder: '#screenTinder', compare: '#screenCompare', editor: '#screenEditor' };
   Object.values(map).forEach(selector => { $(selector).hidden = true; });
   $(map[name]).hidden = false;
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  document.body.classList.toggle('editor-mode', name === 'editor');
+  window.scrollTo({ top: 0, behavior: 'auto' });
 }
 
 function requestFont(family, weight = 400) {
@@ -130,148 +176,161 @@ function requestFont(family, weight = 400) {
   return new Promise(resolve => {
     const link = document.createElement('link');
     let settled = false;
-    const finish = () => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timeout);
-      resolve();
-    };
-    const timeout = setTimeout(finish, 2200);
+    const finish = () => { if (settled) return; settled = true; clearTimeout(timer); resolve(); };
+    const timer = setTimeout(finish, 2200);
     link.rel = 'stylesheet';
-    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family).replace(/%20/g, '+')}:ital,wght@0,${weight};1,${weight}&display=swap`;
+    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family).replace(/%20/g,'+')}:ital,wght@0,${weight};1,${weight}&display=swap`;
     link.onload = finish;
     link.onerror = finish;
     document.head.append(link);
   });
 }
 
-async function ensurePair(pair) {
-  await Promise.all([requestFont(pair.head, pair.weight), requestFont(pair.body, 500)]);
-}
-
-function currentPair() { return FONT_PAIRS[state.pairIndex % FONT_PAIRS.length]; }
-function currentPalette() { return PALETTES[state.paletteIndex % PALETTES.length]; }
-function currentSegment() { return state.segments[state.activeSlide] || ''; }
-function recipeAt(index) { return SLIDE_RECIPES[index % SLIDE_RECIPES.length]; }
-function photoAt(index) {
-  const assigned = PHOTO_INDEXES[index % PHOTO_INDEXES.length];
-  if (assigned === null) return null;
-  return state.photos[assigned % state.photos.length] || BUILT_IN_PHOTOS[0];
-}
-
-function splitHeadline(text) {
-  const clean = String(text || '').trim();
-  const comma = clean.indexOf(',');
-  if (comma > 12 && comma < clean.length - 4) return [clean.slice(0, comma + 1), clean.slice(comma + 1).trim()];
-  const words = clean.split(/\s+/);
-  if (words.length < 5) return [clean, ''];
-  const cut = Math.max(2, Math.ceil(words.length * .58));
-  return [words.slice(0, cut).join(' '), words.slice(cut).join(' ')];
-}
+async function ensurePair(pair) { await Promise.all([requestFont(pair.head, pair.weight), requestFont(pair.body, 500)]); }
 
 function setCanvasTypography(canvas, pair) {
   canvas.style.setProperty('--font-head', `"${pair.head}"`);
   canvas.style.setProperty('--font-body', `"${pair.body}"`);
   canvas.style.setProperty('--font-weight', pair.weight);
-  canvas.style.setProperty('--font-scale', state.fontSize / 100);
 }
 
-function applyCanvasVisual(photoElement, shadeElement, index) {
-  const recipe = recipeAt(index);
+function photoForSlide(slide) {
+  if (!slide || slide.photoIndex === null || state.textOnly) return null;
+  const photos = activePhotos();
+  return photos.length ? photos[slide.photoIndex % photos.length] : null;
+}
+
+function applyPhoto(photoElement, shadeElement, slide) {
+  const photo = photoForSlide(slide);
   const palette = currentPalette();
-  const photo = photoAt(index);
-  const isText = recipe === 'text';
-  photoElement.style.backgroundImage = isText || !photo ? 'none' : `url("${photo.url}")`;
-  photoElement.style.backgroundColor = isText ? palette.colors[1] : palette.colors[3];
-  photoElement.style.filter = `brightness(${state.brightness / 100})`;
-  shadeElement.style.background = isText ? 'rgba(0,0,0,.08)' : `linear-gradient(180deg, rgba(4,6,6,.14) 0%, rgba(4,6,6,.04) 34%, rgba(4,6,6,${Math.max(.28, state.shade / 100)}) 100%)`;
+  photoElement.style.backgroundImage = photo ? `url("${photo.url}")` : 'none';
+  photoElement.style.backgroundColor = photo ? palette.colors[3] : palette.colors[(state.activeSlide + 1) % palette.colors.length];
+  photoElement.style.filter = `brightness(${(slide?.brightness ?? 92) / 100})`;
+  shadeElement.style.background = photo ? `linear-gradient(180deg,rgba(4,6,6,.12),rgba(4,6,6,.04) 34%,rgba(4,6,6,${Math.max(.18,(slide?.shade ?? 46)/100)}))` : 'rgba(0,0,0,.08)';
+}
+
+function updateStartValidation() {
+  const hasText = state.sourceText.trim().length >= 8;
+  const hasVisual = state.photos.length > 0 || state.textOnly;
+  $('#startProject').disabled = !(hasText && hasVisual);
+  $('#startHint').textContent = !hasText ? 'Добавьте текст' : !hasVisual ? 'Добавьте фото или выберите режим без фото' : 'Можно продолжать';
+}
+
+function renderPhotoChips(target, selectable = true) {
+  const photos = activePhotos();
+  target.innerHTML = photos.map((photo,index) => `<button class="photo-chip ${index === state.coverPhotoIndex ? 'is-cover' : ''}" data-photo="${index}" type="button" aria-label="${index === state.coverPhotoIndex ? 'Обложка: ' : 'Выбрать обложкой: '}${escapeHtml(photo.name)}"><img src="${photo.url}" alt="${escapeHtml(photo.name)}">${index === state.coverPhotoIndex ? '<span>обложка</span>' : ''}</button>`).join('');
+  if (!selectable) return;
+  $$('[data-photo]', target).forEach(button => button.addEventListener('click', () => {
+    state.coverPhotoIndex = Number(button.dataset.photo);
+    if (state.slides[0]) state.slides[0].photoIndex = state.coverPhotoIndex;
+    renderStart();
+    renderSplit();
+  }));
+}
+
+function renderStart() {
+  $('#sourceText').value = state.sourceText;
+  $('#textOnlyToggle').checked = state.textOnly;
+  $('#startPhotoCount').textContent = `${state.photos.length} / 10`;
+  renderPhotoChips($('#startPhotoStrip'));
+  const canvas = $('#startPreviewCanvas');
+  const photo = state.photos[state.coverPhotoIndex] || null;
+  const hasContent = Boolean(photo || state.textOnly) && state.sourceText.trim().length > 0;
+  canvas.classList.toggle('has-content', hasContent);
+  $('.preview-copy').hidden = !hasContent;
+  $('#startPreviewPhoto').style.backgroundImage = photo ? `url("${photo.url}")` : 'none';
+  $('#startPreviewPhoto').style.backgroundColor = currentPalette().colors[1];
+  $('#startPreviewText').textContent = stripTerminalPeriod(state.sourceText.split(/[.!?]/)[0] || state.sourceText);
+  updateStartValidation();
+}
+
+function renderSplit() {
+  renderPhotoChips($('#photoStrip'));
+  $('#segmentCount').textContent = `${state.slides.length} ${cardWord(state.slides.length)}`;
+  const maxLength = Math.max(0,...state.slides.map(slide => slide.originalText.length));
+  $('#densityStatus').textContent = maxLength > 180 ? 'Есть плотный текст' : 'Плотность нормальная';
+  $('#segmentList').innerHTML = state.slides.map((slide,index) => `<article class="segment-card" data-index="${index}"><span class="segment-number">${index + 1}</span><textarea aria-label="Текст карточки ${index + 1}">${escapeHtml(stripTerminalPeriod(slide.originalText))}</textarea><div class="segment-controls"><button data-action="split" type="button"><span class="material-symbols-rounded">call_split</span>Разделить</button>${index ? '<button data-action="merge" type="button"><span class="material-symbols-rounded">merge</span>Объединить выше</button><button data-action="up" type="button" aria-label="Выше"><span class="material-symbols-rounded">arrow_upward</span></button>' : ''}${index < state.slides.length - 1 ? '<button data-action="down" type="button" aria-label="Ниже"><span class="material-symbols-rounded">arrow_downward</span></button>' : ''}<button data-action="remove" type="button" aria-label="Удалить"><span class="material-symbols-rounded">delete</span></button></div></article>`).join('');
+  $$('.segment-card').forEach(card => {
+    const index = Number(card.dataset.index);
+    card.querySelector('textarea').addEventListener('input', event => { applyTextToSlide(state.slides[index], event.target.value); state.sourceText = state.slides.map(slide => slide.originalText).join(' '); saveDraft(); });
+    card.querySelectorAll('[data-action]').forEach(button => button.addEventListener('click', () => editSlideStructure(index, button.dataset.action)));
+  });
+}
+
+function editSlideStructure(index, action) {
+  if (action === 'split' && state.slides.length < 10) {
+    const text = state.slides[index].originalText;
+    const words = text.split(/\s+/);
+    if (words.length < 2) return showToast('В этой карточке нечего разделять');
+    const cut = Math.ceil(words.length / 2);
+    const first = makeSlide(words.slice(0,cut).join(' '), state.slides[index].photoIndex);
+    const second = makeSlide(words.slice(cut).join(' '), null);
+    state.slides.splice(index,1,first,second);
+  }
+  if (action === 'merge' && index > 0) {
+    const merged = `${state.slides[index - 1].originalText} ${state.slides[index].originalText}`.trim();
+    state.slides.splice(index - 1,2,makeSlide(merged,state.slides[index - 1].photoIndex));
+  }
+  if (action === 'up' && index > 0) [state.slides[index - 1],state.slides[index]] = [state.slides[index],state.slides[index - 1]];
+  if (action === 'down' && index < state.slides.length - 1) [state.slides[index + 1],state.slides[index]] = [state.slides[index],state.slides[index + 1]];
+  if (action === 'remove' && state.slides.length > 1) state.slides.splice(index,1);
+  state.sourceText = state.slides.map(slide => slide.originalText).join(' ');
+  state.activeSlide = Math.min(state.activeSlide,state.slides.length - 1);
+  renderSplit(); saveDraft();
+}
+
+function thumbMarkup(slide,index,mini = false) {
+  const photo = photoForSlide(slide);
+  const palette = currentPalette();
+  const background = photo ? `background-image:url(&quot;${photo.url}&quot;)` : `background-color:${palette.colors[(index + 1) % palette.colors.length]}`;
+  if (mini) return `<i style="${background}"></i>`;
+  return `<button class="slide-thumb ${index === state.activeSlide ? 'is-active' : ''} ${photo ? '' : 'is-text'}" data-slide="${index}" type="button" style="${background}" aria-label="Карточка ${index + 1}"><span>${index + 1}</span><b>${escapeHtml(slide.blocks.main.text)}</b></button>`;
 }
 
 function renderProgress() {
   $('#pairProgress').textContent = `${state.pairIndex + 1} из ${FONT_PAIRS.length}`;
   const chunkStart = Math.floor(state.pairIndex / 4) * 4;
-  $('#progressDots').innerHTML = Array.from({ length: 8 }, (_, i) => {
-    const absolute = chunkStart + i;
-    const className = absolute === state.pairIndex ? 'is-current' : absolute < state.pairIndex ? 'is-done' : '';
-    return `<i class="${className}"></i>`;
-  }).join('');
+  $('#progressDots').innerHTML = Array.from({length:8},(_,i) => { const absolute = chunkStart + i; const className = absolute === state.pairIndex ? 'is-current' : absolute < state.pairIndex ? 'is-done' : ''; return `<i class="${className}"></i>`; }).join('');
 }
 
-function thumbMarkup(index, mini = false) {
-  const recipe = recipeAt(index);
-  const photo = photoAt(index);
-  const palette = currentPalette();
-  const background = recipe === 'text' ? palette.colors[1] : recipe === 'light' ? palette.colors[0] : photo ? `url(&quot;${photo.url}&quot;)` : palette.colors[3];
-  if (mini) return `<i style="background-image:${background.startsWith('url') ? background : 'none'};background-color:${background.startsWith('url') ? palette.colors[3] : background}"></i>`;
-  const classes = ['slide-thumb', state.activeSlide === index ? 'is-active' : '', recipe === 'text' ? 'is-text' : '', recipe === 'light' ? 'is-light' : ''].filter(Boolean).join(' ');
-  const style = background.startsWith('url') ? `background-image:${background}` : `background-color:${background}`;
-  return `<button class="${classes}" data-slide="${index}" type="button" style="${style}" aria-label="Карточка ${index + 1}"><span>${index + 1}</span><b>${state.segments[index]}</b></button>`;
+function renderPalettes(target = $('#paletteSwatches')) {
+  target.innerHTML = PALETTES.map((palette,index) => `<button class="palette-swatch ${index === state.paletteIndex ? 'is-active' : ''}" data-palette="${index}" type="button" aria-label="Палитра ${palette.name}" style="background:${palette.colors[1]}"></button>`).join('');
+  $$('[data-palette]',target).forEach(button => button.addEventListener('click', () => { state.paletteIndex = Number(button.dataset.palette); renderTinder(); renderEditor(); saveDraft(); }));
 }
 
-function renderStoryboards() {
-  $('#cardCount').textContent = `${state.segments.length} ${cardWord(state.segments.length)}`;
-  $('#miniStoryboard').innerHTML = state.segments.map((_, index) => thumbMarkup(index, true)).join('');
-  $('#slideFilmstrip').innerHTML = state.segments.map((_, index) => thumbMarkup(index)).join('');
-  $$('#slideFilmstrip [data-slide]').forEach(button => button.addEventListener('click', () => {
-    state.activeSlide = Number(button.dataset.slide);
-    renderTinder();
-  }));
-}
-
-function renderPalettes() {
-  $('#paletteSwatches').innerHTML = PALETTES.map((palette, index) => `<button class="palette-swatch ${index === state.paletteIndex ? 'is-active' : ''}" data-palette="${index}" type="button" aria-label="Палитра ${palette.name}" style="background:${palette.colors[1]}"></button>`).join('');
-  $$('#paletteSwatches [data-palette]').forEach(button => button.addEventListener('click', () => {
-    state.paletteIndex = Number(button.dataset.palette);
-    renderTinder();
-    saveDraft();
-  }));
-}
-
-async function renderTinder() {
+function renderTinder() {
+  const slide = state.slides[0];
+  if (!slide) return;
   const pair = currentPair();
   const requestedIndex = state.pairIndex;
-  ensurePair(pair).then(() => {
-    if (state.pairIndex === requestedIndex) setCanvasTypography($('#tinderCanvas'), pair);
-  });
+  ensurePair(pair).then(() => { if (state.pairIndex === requestedIndex) setCanvasTypography($('#tinderCanvas'),pair); });
   renderProgress();
-  renderStoryboards();
-  renderPalettes();
-  const canvas = $('#tinderCanvas');
-  setCanvasTypography(canvas, pair);
-  applyCanvasVisual($('#canvasPhoto'), $('#canvasShade'), state.activeSlide);
-  const [main, accent] = splitHeadline(currentSegment());
-  $('#headlineMain').textContent = main;
-  $('#headlineAccent').textContent = accent;
-  $('#headlineAccent').hidden = !accent;
-  $('#canvasIndex').textContent = `${String(state.activeSlide + 1).padStart(2, '0')} / ${String(state.segments.length).padStart(2, '0')}`;
+  setCanvasTypography($('#tinderCanvas'),pair);
+  applyPhoto($('#canvasPhoto'),$('#canvasShade'),slide);
+  $('#headlineMain').textContent = slide.blocks.main.text;
+  $('#headlineAccent').textContent = slide.blocks.accent.text;
+  $('#headlineAccent').hidden = !slide.blocks.accent.text;
+  $('#canvasIndex').textContent = `01 / ${String(state.slides.length).padStart(2,'0')}`;
   $('#pairName').textContent = pair.name;
   $('#pairCharacter').textContent = pair.character;
-  $('#fontSizeRange').value = state.fontSize;
-  $('#brightnessRange').value = state.brightness;
-  $('#guideToggle').checked = state.showGuides;
-  $('#safeGuides').hidden = !state.showGuides;
+  $('#cardCount').textContent = `${state.slides.length} ${cardWord(state.slides.length)}`;
+  $('#miniStoryboard').innerHTML = state.slides.map((item,index) => thumbMarkup(item,index,true)).join('');
+  renderPalettes();
   $('#likedCount').textContent = state.liked.length;
-  $('#compareSelected').disabled = state.liked.length === 0;
+  $('#tinderNext').hidden = state.liked.length === 0;
   $('#undoChoice').disabled = state.choiceHistory.length === 0;
-  canvas.style.transform = '';
-  canvas.style.opacity = '';
-  $('.stamp-no').style.opacity = 0;
-  $('.stamp-yes').style.opacity = 0;
-}
-
-function cardWord(number) {
-  if (number % 10 === 1 && number % 100 !== 11) return 'карточка';
-  if ([2, 3, 4].includes(number % 10) && ![12, 13, 14].includes(number % 100)) return 'карточки';
-  return 'карточек';
+  const canvas = $('#tinderCanvas');
+  canvas.style.transform = ''; canvas.style.opacity = '';
+  $('.stamp-no').style.opacity = 0; $('.stamp-yes').style.opacity = 0;
 }
 
 function chooseFont(liked) {
   const index = state.pairIndex;
-  state.choiceHistory.push({ index, liked });
+  state.choiceHistory.push({index,liked});
   if (liked && !state.liked.includes(index)) state.liked.push(index);
   state.pairIndex = (state.pairIndex + 1) % FONT_PAIRS.length;
-  renderTinder();
-  saveDraft();
+  renderTinder(); saveDraft();
+  if (liked) showToast(`Стиль сохранён · всего ${state.liked.length}`);
 }
 
 function undoChoice() {
@@ -279,282 +338,331 @@ function undoChoice() {
   if (!last) return;
   state.pairIndex = last.index;
   if (last.liked) state.liked = state.liked.filter(index => index !== last.index);
-  renderTinder();
-  saveDraft();
+  renderTinder(); saveDraft();
 }
 
 function updateSwipe(delta) {
   const card = $('#tinderCanvas');
-  const limited = Math.max(-150, Math.min(150, delta));
-  card.style.transform = `translateX(${limited}px) rotate(${limited / 28}deg)`;
-  $('.stamp-no').style.opacity = Math.max(0, -limited / 90);
-  $('.stamp-yes').style.opacity = Math.max(0, limited / 90);
-}
-
-function segmentText(text) {
-  const clean = String(text || '').replace(/\r/g, '').trim();
-  if (!clean) return [''];
-  const forced = clean.split(/\n\s*---\s*\n/).map(part => part.trim()).filter(Boolean);
-  if (forced.length > 1) return forced.slice(0, 10);
-  const segmenter = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter('ru', { granularity: 'sentence' }) : null;
-  const sentences = segmenter ? [...segmenter.segment(clean)].map(item => item.segment.trim()).filter(Boolean) : clean.split(/(?<=[.!?…])\s+/).filter(Boolean);
-  const desired = Math.min(10, Math.max(1, Math.ceil(clean.length / 78)));
-  const target = Math.ceil(clean.length / desired);
-  const chunks = [];
-  let current = '';
-  sentences.forEach(sentence => {
-    const candidate = current ? `${current} ${sentence}` : sentence;
-    if (current && candidate.length > target && chunks.length < 9) {
-      chunks.push(current);
-      current = sentence;
-    } else current = candidate;
-  });
-  if (current) chunks.push(current);
-  return chunks.slice(0, 10);
-}
-
-function renderSplit() {
-  $('#sourceText').value = state.sourceText;
-  $('#segmentCount').textContent = `${state.segments.length} ${cardWord(state.segments.length)}`;
-  const dense = state.segments.some(text => text.length > 120);
-  $('#densityStatus').textContent = dense ? 'Есть плотные карточки' : 'Плотность нормальная';
-  $('#segmentList').innerHTML = state.segments.map((text, index) => `
-    <article class="segment-card" data-segment="${index}">
-      <span class="segment-number">${index + 1}</span>
-      <textarea aria-label="Текст карточки ${index + 1}" maxlength="420">${escapeHtml(text)}</textarea>
-      <div class="segment-controls">
-        <button type="button" data-action="split"><span class="material-symbols-rounded" aria-hidden="true">call_split</span>Разделить</button>
-        ${index ? '<button type="button" data-action="merge"><span class="material-symbols-rounded" aria-hidden="true">merge</span>Объединить выше</button>' : ''}
-        ${index ? '<button type="button" data-action="up"><span class="material-symbols-rounded" aria-hidden="true">arrow_upward</span></button>' : ''}
-        ${index < state.segments.length - 1 ? '<button type="button" data-action="down"><span class="material-symbols-rounded" aria-hidden="true">arrow_downward</span></button>' : ''}
-        ${state.segments.length > 1 ? '<button type="button" data-action="remove"><span class="material-symbols-rounded" aria-hidden="true">delete</span></button>' : ''}
-      </div>
-    </article>`).join('');
-  $$('.segment-card').forEach(card => {
-    const index = Number(card.dataset.segment);
-    card.querySelector('textarea').addEventListener('input', event => {
-      state.segments[index] = event.target.value;
-      state.sourceText = state.segments.join(' ');
-      saveDraft();
-    });
-    card.querySelectorAll('[data-action]').forEach(button => button.addEventListener('click', () => mutateSegment(index, button.dataset.action)));
-  });
-  $('#photoStrip').innerHTML = state.photos.map(photo => `<img src="${photo.url}" alt="${escapeHtml(photo.name)}">`).join('');
-}
-
-function mutateSegment(index, action) {
-  if (action === 'split') {
-    if (state.segments.length >= 10) return showToast('В карусели может быть максимум 10 карточек');
-    const text = state.segments[index];
-    let point = text.lastIndexOf(' ', Math.ceil(text.length / 2));
-    if (point < 8) point = text.indexOf(' ', Math.ceil(text.length / 2));
-    if (point < 1) return showToast('Добавьте больше текста, чтобы разделить карточку');
-    state.segments.splice(index, 1, text.slice(0, point).trim(), text.slice(point).trim());
-  }
-  if (action === 'merge' && index > 0) state.segments.splice(index - 1, 2, `${state.segments[index - 1]} ${state.segments[index]}`.trim());
-  if (action === 'up' && index > 0) [state.segments[index - 1], state.segments[index]] = [state.segments[index], state.segments[index - 1]];
-  if (action === 'down' && index < state.segments.length - 1) [state.segments[index + 1], state.segments[index]] = [state.segments[index], state.segments[index + 1]];
-  if (action === 'remove' && state.segments.length > 1) state.segments.splice(index, 1);
-  state.activeSlide = Math.min(state.activeSlide, state.segments.length - 1);
-  state.sourceText = state.segments.join(' ');
-  renderSplit();
-  saveDraft();
-}
-
-function escapeHtml(value) {
-  return String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
+  const limited = Math.max(-150,Math.min(150,delta));
+  card.style.transform = `translateX(${limited}px) rotate(${limited/28}deg)`;
+  $('.stamp-no').style.opacity = Math.max(0,-limited/90);
+  $('.stamp-yes').style.opacity = Math.max(0,limited/90);
 }
 
 async function renderCompare() {
   const indexes = state.liked.length ? state.liked : [state.pairIndex];
+  const slide = state.slides[0];
+  const photo = photoForSlide(slide);
   $('#finalistGrid').innerHTML = indexes.map(index => {
     const pair = FONT_PAIRS[index];
-    return `<button class="finalist-card" data-pair="${index}" type="button"><span class="finalist-preview" style="background-image:url('${BUILT_IN_PHOTOS[0].url}')"><h2 style="font-family:'${pair.head}',serif;font-weight:${pair.weight}">Система должна помогать, а не наказывать.</h2></span><span class="finalist-name">${pair.name}</span></button>`;
+    const background = photo ? `background-image:url('${photo.url}')` : `background:${currentPalette().colors[1]}`;
+    return `<button class="finalist-card ${state.selectedPair === index ? 'is-selected' : ''}" data-pair="${index}" type="button"><span class="finalist-preview" style="${background}"><h2 style="font-family:'${pair.head}',serif;font-weight:${pair.weight}">${escapeHtml(slide.blocks.main.text)}</h2><em style="font-family:'${pair.body}',serif">${escapeHtml(slide.blocks.accent.text)}</em></span><span class="finalist-name"><span>${escapeHtml(pair.name)}</span><b>${state.selectedPair === index ? 'Выбрано' : 'Выбрать'}</b></span></button>`;
   }).join('');
   await Promise.all(indexes.map(index => ensurePair(FONT_PAIRS[index])));
-  $$('.finalist-card').forEach(button => button.addEventListener('click', () => {
-    state.selectedPair = Number(button.dataset.pair);
-    state.activeSlide = 0;
-    renderEditor();
-    showScreen('editor');
-  }));
+  $$('.finalist-card').forEach(button => button.addEventListener('click', () => { state.selectedPair = Number(button.dataset.pair); renderCompare(); $('#compareFooter').hidden = false; $('#selectedStyleName').textContent = FONT_PAIRS[state.selectedPair].name; saveDraft(); }));
+  $('#compareFooter').hidden = state.selectedPair === null;
+  if (state.selectedPair !== null) $('#selectedStyleName').textContent = FONT_PAIRS[state.selectedPair].name;
 }
 
-async function renderEditor() {
-  const pair = FONT_PAIRS[state.selectedPair] || currentPair();
-  await ensurePair(pair);
-  setCanvasTypography($('#editorCanvas'), pair);
-  applyCanvasVisual($('#editorPhoto'), $('#editorShade'), state.activeSlide);
-  const [main, accent] = splitHeadline(currentSegment());
-  $('#editorHeadline').innerHTML = `<span>${escapeHtml(main)}</span>${accent ? `<em>${escapeHtml(accent)}</em>` : ''}`;
-  $('#editorIndex').textContent = `${String(state.activeSlide + 1).padStart(2, '0')} / ${String(state.segments.length).padStart(2, '0')}`;
-  $('#editorBody').textContent = pair.name;
-  $('#editorText').value = currentSegment();
-  $('#editorFontSize').value = state.fontSize;
-  $('#editorBrightness').value = state.brightness;
-  $('#editorShadeRange').value = state.shade;
-  $('#editorFilmstrip').innerHTML = state.segments.map((_, index) => thumbMarkup(index)).join('');
-  $$('#editorFilmstrip [data-slide]').forEach(button => button.addEventListener('click', () => {
-    state.activeSlide = Number(button.dataset.slide);
-    renderEditor();
-  }));
+function renderEditorFilmstrip() {
+  $('#editorFilmstrip').innerHTML = state.slides.map((slide,index) => thumbMarkup(slide,index)).join('');
+  $$('#editorFilmstrip [data-slide]').forEach(button => button.addEventListener('click', () => { commitBlockText(); state.activeSlide = Number(button.dataset.slide); renderEditor(); }));
 }
 
-function loadImage(url) {
-  return new Promise((resolve, reject) => {
-    const image = new Image();
-    image.onload = () => resolve(image);
-    image.onerror = reject;
-    image.src = url;
+function applyBlockStyle(element,block) {
+  const canvasWidth = $('#editorCanvas').clientWidth || 360;
+  element.style.left = `${block.x}%`;
+  element.style.top = `${block.y}%`;
+  element.style.width = `${block.width}%`;
+  element.style.fontSize = `${Math.max(14,block.size / 1080 * canvasWidth)}px`;
+  element.style.color = block.color;
+  element.style.textAlign = block.align;
+}
+
+function renderEditor() {
+  if ($('#screenEditor').hidden) return;
+  const slide = currentSlide();
+  if (!slide) return;
+  const pair = chosenPair();
+  ensurePair(pair).then(() => setCanvasTypography($('#editorCanvas'),pair));
+  setCanvasTypography($('#editorCanvas'),pair);
+  applyPhoto($('#editorPhoto'),$('#editorShade'),slide);
+  $('#editorIndex').textContent = `${String(state.activeSlide + 1).padStart(2,'0')} / ${String(state.slides.length).padStart(2,'0')}`;
+  ['main','accent'].forEach(key => {
+    const element = $(`#${key}Block`);
+    const block = slide.blocks[key];
+    if (document.activeElement !== element) element.textContent = block.text;
+    element.dataset.placeholder = key === 'main' ? 'Основной текст' : 'Добавить акцент';
+    element.classList.toggle('is-selected',state.selectedBlock === key);
+    applyBlockStyle(element,block);
   });
+  $('#editorBrightness').value = slide.brightness;
+  $('#editorShadeRange').value = slide.shade;
+  $('#editorGuideToggle').checked = state.showGuides;
+  $('#editorGuides').hidden = !state.showGuides;
+  renderEditorFilmstrip();
+  renderPalettes($('#editorPalettes'));
+  renderSelectedBlockControls();
+  $('#deleteCard').disabled = state.slides.length <= 1;
 }
 
-function drawImageCover(ctx, image, width, height) {
-  const scale = Math.max(width / image.width, height / image.height);
-  const drawWidth = image.width * scale;
-  const drawHeight = image.height * scale;
-  ctx.drawImage(image, (width - drawWidth) / 2, (height - drawHeight) / 2, drawWidth, drawHeight);
+function renderSelectedBlockControls() {
+  const slide = currentSlide();
+  if (!slide) return;
+  const block = slide.blocks[state.selectedBlock];
+  $('#selectedBlockName').textContent = state.selectedBlock === 'main' ? 'Основной текст' : 'Акцентный текст';
+  $('#blockSize').value = block.size;
+  $('#blockColor').value = block.color;
+  $$('.align-control button').forEach(button => button.classList.toggle('is-active',button.dataset.align === block.align));
 }
 
-function wrapLines(ctx, text, maxWidth) {
-  const words = String(text).split(/\s+/).filter(Boolean);
-  const lines = [];
-  let line = '';
-  words.forEach(word => {
-    const test = line ? `${line} ${word}` : word;
-    if (line && ctx.measureText(test).width > maxWidth) { lines.push(line); line = word; } else line = test;
+function commitBlockText() {
+  const slide = currentSlide();
+  if (!slide) return;
+  ['main','accent'].forEach(key => { const element = $(`#${key}Block`); if (element) slide.blocks[key].text = stripTerminalPeriod(element.innerText.replace(/\n{3,}/g,'\n\n')); });
+  slide.originalText = [slide.blocks.main.text,slide.blocks.accent.text].filter(Boolean).join(' ');
+  state.sourceText = state.slides.map(item => item.originalText).join(' ');
+  saveDraft();
+}
+
+function selectEditorBlock(key) {
+  state.selectedBlock = key;
+  $$('.dock-tab').forEach(button => button.classList.toggle('is-active',button.dataset.panel === 'text'));
+  $('#textPanel').hidden = false; $('#photoPanel').hidden = true; $('#stylePanel').hidden = true;
+  renderEditor();
+}
+
+function startBlockDrag(event) {
+  const key = event.currentTarget.dataset.block;
+  selectEditorBlock(key);
+  const block = currentSlide().blocks[key];
+  state.drag = { key, startX:event.clientX, startY:event.clientY, baseX:block.x, baseY:block.y, moved:false, pointerId:event.pointerId };
+  event.currentTarget.setPointerCapture(event.pointerId);
+}
+
+function moveBlock(event) {
+  if (!state.drag || state.drag.pointerId !== event.pointerId) return;
+  const canvas = $('#editorCanvas').getBoundingClientRect();
+  const dx = (event.clientX - state.drag.startX) / canvas.width * 100;
+  const dy = (event.clientY - state.drag.startY) / canvas.height * 100;
+  if (Math.abs(dx) + Math.abs(dy) < 1.4 && !state.drag.moved) return;
+  state.drag.moved = true;
+  event.preventDefault();
+  const block = currentSlide().blocks[state.drag.key];
+  block.x = Math.max(4,Math.min(96 - block.width,state.drag.baseX + dx));
+  block.y = Math.max(8,Math.min(90,state.drag.baseY + dy));
+  applyBlockStyle(event.currentTarget,block);
+  $('#dragTip').classList.add('is-hidden');
+}
+
+function endBlockDrag(event) {
+  if (!state.drag || state.drag.pointerId !== event.pointerId) return;
+  if (!state.drag.moved) event.currentTarget.focus();
+  state.drag = null;
+  saveDraft();
+}
+
+function editorPanel(name) {
+  $$('.dock-tab').forEach(button => button.classList.toggle('is-active',button.dataset.panel === name));
+  $('#textPanel').hidden = name !== 'text'; $('#photoPanel').hidden = name !== 'photo'; $('#stylePanel').hidden = name !== 'style';
+}
+
+function addEditorCard() {
+  if (state.slides.length >= 10) return showToast('Максимум 10 карточек');
+  state.slides.splice(state.activeSlide + 1,0,makeSlide('Новая карточка',null));
+  state.activeSlide += 1; state.selectedBlock = 'main'; renderEditor(); saveDraft();
+}
+
+function duplicateEditorCard() {
+  if (state.slides.length >= 10) return showToast('Максимум 10 карточек');
+  commitBlockText();
+  const copy = structuredClone(currentSlide());
+  copy.id = `slide-${Date.now()}-${slideSeed++}`;
+  state.slides.splice(state.activeSlide + 1,0,copy); state.activeSlide += 1; renderEditor(); saveDraft();
+}
+
+function deleteEditorCard() {
+  if (state.slides.length <= 1) return;
+  state.slides.splice(state.activeSlide,1); state.activeSlide = Math.max(0,state.activeSlide - 1); renderEditor(); saveDraft();
+}
+
+function loadImage(url) { return new Promise((resolve,reject) => { const image = new Image(); image.onload = () => resolve(image); image.onerror = reject; image.src = url; }); }
+function drawImageCover(ctx,image,width,height) { const scale = Math.max(width/image.width,height/image.height); const drawWidth=image.width*scale, drawHeight=image.height*scale; ctx.drawImage(image,(width-drawWidth)/2,(height-drawHeight)/2,drawWidth,drawHeight); }
+
+function wrapManualLines(ctx,text,maxWidth) {
+  const result = [];
+  String(text || '').split('\n').forEach(manual => {
+    const words = manual.trim().split(/\s+/).filter(Boolean);
+    if (!words.length) { result.push(''); return; }
+    let line = '';
+    words.forEach(word => { const test = line ? `${line} ${word}` : word; if (line && ctx.measureText(test).width > maxWidth) { result.push(line); line = word; } else line = test; });
+    if (line) result.push(line);
   });
-  if (line) lines.push(line);
-  return lines;
+  return result;
+}
+
+function drawBlock(ctx,block,family,weight,italic=false) {
+  const x = block.x / 100 * 1080, y = block.y / 100 * 1350, width = block.width / 100 * 1080;
+  ctx.fillStyle = block.color;
+  ctx.textBaseline = 'top';
+  ctx.textAlign = block.align;
+  ctx.font = `${italic ? 'italic ' : ''}${weight} ${block.size}px "${family}"`;
+  const anchor = block.align === 'center' ? x + width/2 : block.align === 'right' ? x + width : x;
+  wrapManualLines(ctx,stripTerminalPeriod(block.text),width).slice(0,6).forEach((line,index) => ctx.fillText(line,anchor,y + index * block.size * .92));
 }
 
 async function renderSlideCanvas(index) {
-  const width = 1080, height = 1350;
-  const canvas = document.createElement('canvas');
-  canvas.width = width; canvas.height = height;
+  const slide = state.slides[index];
+  const pair = chosenPair();
+  await ensurePair(pair);
+  if (document.fonts?.ready) await Promise.race([document.fonts.ready,new Promise(resolve => setTimeout(resolve,2200))]);
+  const canvas = document.createElement('canvas'); canvas.width=1080; canvas.height=1350;
   const ctx = canvas.getContext('2d');
   const palette = currentPalette();
-  const recipe = recipeAt(index);
-  const photo = photoAt(index);
-  const pair = FONT_PAIRS[state.selectedPair] || currentPair();
-  await ensurePair(pair);
-  await document.fonts.ready;
-
-  ctx.fillStyle = recipe === 'text' ? palette.colors[1] : palette.colors[3];
-  ctx.fillRect(0, 0, width, height);
-  if (recipe !== 'text' && photo) {
-    const image = await loadImage(photo.url);
-    ctx.save(); ctx.filter = `brightness(${state.brightness / 100})`; drawImageCover(ctx, image, width, height); ctx.restore();
-    const gradient = ctx.createLinearGradient(0, 0, 0, height);
-    gradient.addColorStop(0, 'rgba(4,6,6,.14)'); gradient.addColorStop(.35, 'rgba(4,6,6,.04)'); gradient.addColorStop(1, `rgba(4,6,6,${Math.max(.28, state.shade / 100)})`);
-    ctx.fillStyle = gradient; ctx.fillRect(0, 0, width, height);
-  }
-
-  const light = recipe === 'light';
-  ctx.fillStyle = light ? palette.colors[3] : '#ffffff';
-  ctx.textBaseline = 'top';
-  ctx.font = '500 25px "Onest"';
-  ctx.letterSpacing = '5px';
-  ctx.fillText('ТЕХНОЛОГИИ ДЛЯ ЛЮДЕЙ', 76, 74);
-  ctx.textAlign = 'right'; ctx.fillText(`${String(index + 1).padStart(2, '0')} / ${String(state.segments.length).padStart(2, '0')}`, width - 76, 74); ctx.textAlign = 'left';
-
-  const [main, accent] = splitHeadline(state.segments[index]);
-  const baseSize = Math.max(70, Math.min(126, (118 - Math.max(0, main.length - 32) * 1.15) * state.fontSize / 100));
-  let y = 720;
-  ctx.font = `${pair.weight} ${baseSize}px "${pair.head}"`;
-  ctx.letterSpacing = '-3px';
-  wrapLines(ctx, main, width - 152).slice(0, 4).forEach(line => { ctx.fillText(line, 76, y); y += baseSize * .9; });
-  if (accent) {
-    const accentSize = Math.max(62, baseSize * .86);
-    ctx.font = `italic 500 ${accentSize}px "${pair.body}"`;
-    wrapLines(ctx, accent, width - 152).slice(0, 3).forEach(line => { ctx.fillText(line, 76, y + 5); y += accentSize * .94; });
-  }
-  ctx.fillRect(76, Math.min(y + 28, 1225), 74, 2);
-  ctx.font = '500 22px "Onest"'; ctx.letterSpacing = '5px';
-  ctx.fillText(pair.name.toUpperCase(), 76, Math.min(y + 58, 1260));
+  ctx.fillStyle = palette.colors[(index + 1) % palette.colors.length]; ctx.fillRect(0,0,1080,1350);
+  const photo = photoForSlide(slide);
+  if (photo) { const image = await loadImage(photo.url); ctx.save(); ctx.filter = `brightness(${slide.brightness}%)`; drawImageCover(ctx,image,1080,1350); ctx.restore(); const shade = ctx.createLinearGradient(0,0,0,1350); shade.addColorStop(0,'rgba(4,6,6,.10)'); shade.addColorStop(.38,'rgba(4,6,6,.03)'); shade.addColorStop(1,`rgba(4,6,6,${Math.max(.18,slide.shade/100)})`); ctx.fillStyle=shade; ctx.fillRect(0,0,1080,1350); }
+  ctx.fillStyle='rgba(255,255,255,.84)'; ctx.font='500 22px "Onest"'; ctx.textAlign='left'; ctx.fillText('ВАША ИСТОРИЯ',72,72); ctx.textAlign='right'; ctx.fillText(`${String(index+1).padStart(2,'0')} / ${String(state.slides.length).padStart(2,'0')}`,1008,72);
+  drawBlock(ctx,slide.blocks.main,pair.head,pair.weight,false);
+  drawBlock(ctx,slide.blocks.accent,pair.body,500,true);
   return canvas;
 }
 
-function canvasBlob(canvas) { return new Promise(resolve => canvas.toBlob(resolve, 'image/png')); }
-function downloadBlob(blob, filename) {
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob); link.download = filename; link.click();
-  setTimeout(() => URL.revokeObjectURL(link.href), 1500);
+function canvasBlob(canvas) { return new Promise(resolve => canvas.toBlob(resolve,'image/png')); }
+function revokeSaveUrls() { saveUrls.forEach(url => URL.revokeObjectURL(url)); saveUrls=[]; }
+
+async function prepareAllBlobs() {
+  const blobs=[];
+  for (let index=0; index<state.slides.length; index += 1) { $('#saveStatus').textContent = `Подготавливаю ${index+1} из ${state.slides.length}…`; blobs.push(await canvasBlob(await renderSlideCanvas(index))); }
+  return blobs;
 }
 
-async function downloadCurrent() {
-  try {
-    showToast('Собираю PNG…');
-    const canvas = await renderSlideCanvas(state.activeSlide);
-    downloadBlob(await canvasBlob(canvas), `carousel-${state.activeSlide + 1}.png`);
-  } catch (error) { console.error(error); showToast('Не удалось собрать карточку'); }
+function guardDemoExport() {
+  if (!state.isDemo) return false;
+  $('#saveStatus').textContent = 'Это демонстрация с чужими фотографиями. Вернитесь в начало и загрузите свои — демо нельзя экспортировать.';
+  return true;
 }
 
-async function downloadAll() {
+async function shareCarousel() {
+  if (guardDemoExport()) return;
   try {
-    showToast('Собираю всю карусель…');
+    const blobs = await prepareAllBlobs();
+    const files = blobs.map((blob,index) => new File([blob],`carousel-${String(index+1).padStart(2,'0')}.png`,{type:'image/png'}));
+    if (!navigator.share || !navigator.canShare?.({files})) { $('#saveStatus').textContent = 'Этот браузер не умеет передавать несколько изображений. Ниже можно сохранить карточки по одной.'; renderSaveLinks(blobs); return; }
+    $('#saveStatus').textContent = 'Открываю системное меню…';
+    await navigator.share({files,title:'Моя карусель'});
+    $('#saveStatus').textContent = 'Системное меню закрыто. Если вы выбрали сохранение, изображения находятся в выбранном приложении.';
+  } catch (error) {
+    if (error?.name === 'AbortError') $('#saveStatus').textContent = 'Сохранение отменено. Можно выбрать другой способ ниже.';
+    else { console.error(error); $('#saveStatus').textContent = 'Не удалось открыть системное меню. Сохраните карточки по одной.'; }
+  }
+}
+
+function renderSaveLinks(blobs) {
+  revokeSaveUrls();
+  $('#saveLinks').innerHTML = blobs.map((blob,index) => { const url=URL.createObjectURL(blob); saveUrls.push(url); return `<a class="save-link" href="${url}" download="carousel-${String(index+1).padStart(2,'0')}.png"><span>Карточка ${index+1}</span><b>Скачать PNG</b></a>`; }).join('');
+  $('#saveStatus').textContent = 'Карточки подготовлены. Нажимайте «Скачать PNG» — браузер сохранит их в «Загрузки» или «Файлы».';
+}
+
+async function prepareIndividual() {
+  if (guardDemoExport()) return;
+  try { renderSaveLinks(await prepareAllBlobs()); } catch (error) { console.error(error); $('#saveStatus').textContent='Не удалось подготовить изображения.'; }
+}
+
+function downloadBlob(blob,filename) { const link=document.createElement('a'); link.href=URL.createObjectURL(blob); link.download=filename; link.click(); setTimeout(()=>URL.revokeObjectURL(link.href),1800); }
+
+async function downloadZip() {
+  if (guardDemoExport()) return;
+  try {
     if (!window.JSZip) throw new Error('JSZip unavailable');
-    const zip = new JSZip();
-    for (let index = 0; index < state.segments.length; index += 1) {
-      const canvas = await renderSlideCanvas(index);
-      zip.file(`carousel-${String(index + 1).padStart(2, '0')}.png`, await canvasBlob(canvas));
-    }
-    downloadBlob(await zip.generateAsync({ type: 'blob' }), 'carousel-studio.zip');
-    showToast('Карусель готова');
-  } catch (error) { console.error(error); showToast('Не удалось собрать ZIP'); }
+    const blobs=await prepareAllBlobs(); const zip=new JSZip();
+    blobs.forEach((blob,index)=>zip.file(`carousel-${String(index+1).padStart(2,'0')}.png`,blob));
+    downloadBlob(await zip.generateAsync({type:'blob'}),'carousel-studio.zip');
+    $('#saveStatus').textContent='Браузер начал загрузку ZIP. Ищите файл carousel-studio.zip в «Загрузки» или «Файлы».';
+  } catch (error) { console.error(error); $('#saveStatus').textContent='Не удалось начать загрузку ZIP.'; }
 }
 
-$('#openSplit').addEventListener('click', () => { renderSplit(); showScreen('split'); });
-$('#editSplit').addEventListener('click', () => { renderSplit(); showScreen('split'); });
-$('#backToTinder').addEventListener('click', () => { renderTinder(); showScreen('tinder'); });
-$('#confirmSplit').addEventListener('click', () => { state.sourceText = state.segments.join(' '); saveDraft(); renderTinder(); showScreen('tinder'); });
-$('#autoSplit').addEventListener('click', () => { state.sourceText = $('#sourceText').value; state.segments = segmentText(state.sourceText); state.activeSlide = 0; renderSplit(); saveDraft(); });
-$('#sourceText').addEventListener('input', event => { state.sourceText = event.target.value; });
-$('#addTextCard').addEventListener('click', () => { if (state.segments.length >= 10) return showToast('Максимум 10 карточек'); state.segments.push('Новая мысль'); renderSplit(); saveDraft(); });
-$('#uploadPhotos').addEventListener('click', () => $('#photoInput').click());
-$('#photoInput').addEventListener('change', event => {
-  const files = [...event.target.files].slice(0, Math.max(0, 10 - state.photos.length));
-  files.forEach(file => state.photos.push({ url: URL.createObjectURL(file), name: file.name, local: true }));
-  renderSplit();
+function openSaveDialog() {
+  commitBlockText(); revokeSaveUrls(); $('#saveLinks').innerHTML='';
+  $('#saveStatus').textContent = state.isDemo ? 'Это демонстрация. Чтобы сохранить карусель, загрузите свои фотографии на первом экране.' : `Будет подготовлено ${state.slides.length} PNG 1080 × 1350.`;
+  $('#shareCarousel').disabled=state.isDemo; $('#prepareIndividual').disabled=state.isDemo; $('#downloadZip').disabled=state.isDemo;
+  $('#saveDialog').showModal();
+}
+
+$('#uploadPhotos').addEventListener('click',()=>$('#photoInput').click());
+$('#addMorePhotos').addEventListener('click',()=>$('#photoInput').click());
+$('#replacePhoto').addEventListener('click',()=>{ state.replaceSlide=state.activeSlide; $('#photoInput').click(); });
+$('#photoInput').addEventListener('change',event => {
+  const files=[...event.target.files].slice(0,Math.max(0,10-state.photos.length));
+  files.forEach(file => state.photos.push({url:URL.createObjectURL(file),name:file.name,local:true}));
+  if (files.length) {
+    state.isDemo=false; state.textOnly=false;
+    if (state.replaceSlide !== null && state.slides[state.replaceSlide]) state.slides[state.replaceSlide].photoIndex=state.photos.length-files.length;
+  }
+  state.replaceSlide=null;
+  renderStart(); renderSplit(); event.target.value='';
 });
+$('#sourceText').addEventListener('input',event => { state.sourceText=event.target.value; renderStart(); });
+$('#textOnlyToggle').addEventListener('change',event => { state.textOnly=event.target.checked; renderStart(); });
+$('#startProject').addEventListener('click',()=>{ createSlides(segmentText(state.sourceText)); renderSplit(); showScreen('split'); saveDraft(); });
+$('#openDemo').addEventListener('click',()=>{ state.isDemo=true; state.textOnly=false; state.sourceText=DEMO_TEXT; state.coverPhotoIndex=0; createSlides(segmentText(DEMO_TEXT)); renderSplit(); showScreen('split'); });
+$('#backToStart').addEventListener('click',()=>{ renderStart(); showScreen('start'); });
+$('#autoSplit').addEventListener('click',()=>{ createSlides(segmentText(state.sourceText)); renderSplit(); saveDraft(); });
+$('#addTextCard').addEventListener('click',()=>{ if(state.slides.length>=10)return showToast('Максимум 10 карточек'); state.slides.push(makeSlide('Новая карточка',null)); renderSplit(); saveDraft(); });
+$('#confirmSplit').addEventListener('click',()=>{ if(!state.slides.length)return showToast('Добавьте текст'); state.pairIndex=0; state.liked=[]; state.choiceHistory=[]; state.selectedPair=null; renderTinder(); showScreen('tinder'); saveDraft(); });
+$('#openSplit').addEventListener('click',()=>{ renderSplit(); showScreen('split'); });
+$('#editSplit').addEventListener('click',()=>{ renderSplit(); showScreen('split'); });
+$('#rejectFont').addEventListener('click',()=>chooseFont(false));
+$('#likeFont').addEventListener('click',()=>chooseFont(true));
+$('#undoChoice').addEventListener('click',undoChoice);
+$('#compareSelected').addEventListener('click',async()=>{ await renderCompare(); showScreen('compare'); });
+$('#backFromCompare').addEventListener('click',()=>{ renderTinder(); showScreen('tinder'); });
+$('#openEditor').addEventListener('click',()=>{ state.activeSlide=0; state.selectedBlock='main'; showScreen('editor'); renderEditor(); });
+$('#backToCompare').addEventListener('click',async()=>{ commitBlockText(); await renderCompare(); showScreen('compare'); });
+$('#fontInfo').addEventListener('click',()=>{ const pair=currentPair(); $('#dialogPairName').textContent=pair.name; $('#dialogPairText').textContent=`${pair.character}. Кириллица и PNG-экспорт проверяются до публикации.`; $('#infoDialog').showModal(); });
+$('#closeInfo').addEventListener('click',()=>$('#infoDialog').close());
+$('#customPaletteButton').addEventListener('click',()=>$('#paletteDialog').showModal());
+$('#editorCustomPalette').addEventListener('click',()=>$('#paletteDialog').showModal());
+$('#closePalette').addEventListener('click',()=>$('#paletteDialog').close());
+$('#applyCustomPalette').addEventListener('click',()=>{ PALETTES.push({name:'Моя палитра',colors:[$('#customLight').value,$('#customAccent').value,$('#customMuted').value,$('#customDark').value]}); state.paletteIndex=PALETTES.length-1; $('#paletteDialog').close(); renderTinder(); renderEditor(); saveDraft(); });
 
-$('#rejectFont').addEventListener('click', () => chooseFont(false));
-$('#likeFont').addEventListener('click', () => chooseFont(true));
-$('#undoChoice').addEventListener('click', undoChoice);
-$('#compareSelected').addEventListener('click', async () => { await renderCompare(); showScreen('compare'); });
-$('#backFromCompare').addEventListener('click', () => { renderTinder(); showScreen('tinder'); });
-$('#backToCompare').addEventListener('click', async () => { await renderCompare(); showScreen('compare'); });
+const tinderCanvas=$('#tinderCanvas');
+tinderCanvas.addEventListener('pointerdown',event=>{ state.pointerStart=event.clientX; tinderCanvas.setPointerCapture(event.pointerId); });
+tinderCanvas.addEventListener('pointermove',event=>{ if(state.pointerStart===null)return; updateSwipe(event.clientX-state.pointerStart); });
+tinderCanvas.addEventListener('pointerup',event=>{ if(state.pointerStart===null)return; const delta=event.clientX-state.pointerStart; state.pointerStart=null; if(Math.abs(delta)>72)chooseFont(delta>0); else renderTinder(); });
+tinderCanvas.addEventListener('pointercancel',()=>{ state.pointerStart=null; renderTinder(); });
+tinderCanvas.addEventListener('keydown',event=>{ if(event.key==='ArrowLeft')chooseFont(false); if(event.key==='ArrowRight')chooseFont(true); });
 
-$('#fontSizeRange').addEventListener('input', event => { state.fontSize = Number(event.target.value); renderTinder(); saveDraft(); });
-$('#brightnessRange').addEventListener('input', event => { state.brightness = Number(event.target.value); renderTinder(); saveDraft(); });
-$('#guideToggle').addEventListener('change', event => { state.showGuides = event.target.checked; $('#safeGuides').hidden = !state.showGuides; });
-$('#fontInfo').addEventListener('click', () => { const pair = currentPair(); $('#dialogPairName').textContent = pair.name; $('#dialogPairText').textContent = `${pair.character}. Оба шрифта перед включением в релиз проходят проверку кириллицы, лицензии и PNG-экспорта.`; $('#infoDialog').showModal(); });
-$('#closeInfo').addEventListener('click', () => $('#infoDialog').close());
-$('#customPaletteButton').addEventListener('click', () => $('#paletteDialog').showModal());
-$('#closePalette').addEventListener('click', () => $('#paletteDialog').close());
-$('#applyCustomPalette').addEventListener('click', () => {
-  PALETTES.push({ name: 'Моя палитра', colors: [$('#customLight').value, $('#customAccent').value, $('#customMuted').value, $('#customDark').value] });
-  state.paletteIndex = PALETTES.length - 1;
-  $('#paletteDialog').close(); renderTinder(); saveDraft();
+['main','accent'].forEach(key=>{
+  const element=$(`#${key}Block`);
+  element.addEventListener('pointerdown',startBlockDrag);
+  element.addEventListener('pointermove',moveBlock);
+  element.addEventListener('pointerup',endBlockDrag);
+  element.addEventListener('pointercancel',()=>{state.drag=null;});
+  element.addEventListener('focus',()=>selectEditorBlock(key));
+  element.addEventListener('input',()=>{ const slide=currentSlide(); slide.blocks[key].text=element.innerText; slide.originalText=[slide.blocks.main.text,slide.blocks.accent.text].filter(Boolean).join(' '); saveDraft(); renderEditorFilmstrip(); });
+  element.addEventListener('blur',()=>{ element.textContent=stripTerminalPeriod(element.innerText); commitBlockText(); });
 });
+$('#blockSize').addEventListener('input',event=>{ currentSlide().blocks[state.selectedBlock].size=Number(event.target.value); applyBlockStyle($(`#${state.selectedBlock}Block`),currentSlide().blocks[state.selectedBlock]); saveDraft(); });
+$('#blockColor').addEventListener('input',event=>{ currentSlide().blocks[state.selectedBlock].color=event.target.value; applyBlockStyle($(`#${state.selectedBlock}Block`),currentSlide().blocks[state.selectedBlock]); saveDraft(); });
+$$('.align-control button').forEach(button=>button.addEventListener('click',()=>{ currentSlide().blocks[state.selectedBlock].align=button.dataset.align; renderEditor(); saveDraft(); }));
+$$('.dock-tab').forEach(button=>button.addEventListener('click',()=>editorPanel(button.dataset.panel)));
+$('#editorBrightness').addEventListener('input',event=>{ currentSlide().brightness=Number(event.target.value); applyPhoto($('#editorPhoto'),$('#editorShade'),currentSlide()); saveDraft(); });
+$('#editorShadeRange').addEventListener('input',event=>{ currentSlide().shade=Number(event.target.value); applyPhoto($('#editorPhoto'),$('#editorShade'),currentSlide()); saveDraft(); });
+$('#editorGuideToggle').addEventListener('change',event=>{ state.showGuides=event.target.checked; $('#editorGuides').hidden=!state.showGuides; });
+$('#addEditorCard').addEventListener('click',addEditorCard);
+$('#duplicateCard').addEventListener('click',duplicateEditorCard);
+$('#deleteCard').addEventListener('click',deleteEditorCard);
+window.addEventListener('resize',()=>{ if(!$('#screenEditor').hidden)renderEditor(); });
 
-const tinderCanvas = $('#tinderCanvas');
-tinderCanvas.addEventListener('pointerdown', event => { state.pointerStart = event.clientX; tinderCanvas.setPointerCapture(event.pointerId); });
-tinderCanvas.addEventListener('pointermove', event => { if (state.pointerStart === null) return; updateSwipe(event.clientX - state.pointerStart); });
-tinderCanvas.addEventListener('pointerup', event => { if (state.pointerStart === null) return; const delta = event.clientX - state.pointerStart; state.pointerStart = null; if (Math.abs(delta) > 72) chooseFont(delta > 0); else renderTinder(); });
-tinderCanvas.addEventListener('pointercancel', () => { state.pointerStart = null; renderTinder(); });
-tinderCanvas.addEventListener('keydown', event => { if (event.key === 'ArrowLeft') chooseFont(false); if (event.key === 'ArrowRight') chooseFont(true); });
+$('#openSave').addEventListener('click',openSaveDialog);
+$('#closeSave').addEventListener('click',()=>{ $('#saveDialog').close(); revokeSaveUrls(); });
+$('#shareCarousel').addEventListener('click',shareCarousel);
+$('#prepareIndividual').addEventListener('click',prepareIndividual);
+$('#downloadZip').addEventListener('click',downloadZip);
 
-$('#editorText').addEventListener('input', event => { state.segments[state.activeSlide] = event.target.value; state.sourceText = state.segments.join(' '); renderEditor(); saveDraft(); });
-$('#editorFontSize').addEventListener('input', event => { state.fontSize = Number(event.target.value); renderEditor(); saveDraft(); });
-$('#editorBrightness').addEventListener('input', event => { state.brightness = Number(event.target.value); renderEditor(); saveDraft(); });
-$('#editorShadeRange').addEventListener('input', event => { state.shade = Number(event.target.value); renderEditor(); saveDraft(); });
-$('#downloadCurrent').addEventListener('click', downloadCurrent);
-$('#downloadAll').addEventListener('click', downloadAll);
-$('#downloadAllSecondary').addEventListener('click', downloadAll);
+window.addEventListener('beforeunload',()=>{ state.photos.forEach(photo=>{if(photo.local)URL.revokeObjectURL(photo.url);}); revokeSaveUrls(); });
+if('serviceWorker' in navigator && location.protocol!=='file:')navigator.serviceWorker.register('./sw.js').catch(error=>console.warn('Service worker:',error));
 
-window.addEventListener('beforeunload', () => state.photos.filter(photo => photo.local).forEach(photo => URL.revokeObjectURL(photo.url)));
-if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('./sw.js').catch(error => console.warn('Service worker:', error));
-
-restoreDraft();
-renderTinder();
+renderStart();
+showScreen('start');
