@@ -27,9 +27,8 @@ button { color: inherit; }
 button, input, textarea, label, [contenteditable] { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible, [contenteditable]:focus-visible { outline: 2px solid var(--paper); outline-offset: 3px; }
 button:disabled { opacity: .38; cursor: not-allowed; }
-.material-symbols-rounded { display: inline-grid; width: 1.2rem; flex: 0 0 1.2rem; place-items: center; overflow: hidden; white-space: nowrap; font-size: 0 !important; line-height: 1; }
-.material-symbols-rounded::before { content: attr(data-glyph); color: currentColor; font: 700 var(--icon-size,1.08rem)/1 Arial, sans-serif; }
-.material-symbols-rounded.filled::before { font-weight: 900; }
+.material-symbols-rounded { display: inline-grid; width: 1.2rem; flex: 0 0 1.2rem; place-items: center; overflow: hidden; white-space: nowrap; font: 700 var(--icon-size,1.08rem)/1 Arial, sans-serif; }
+.material-symbols-rounded.filled { font-weight: 900; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 [hidden] { display: none !important; }
 

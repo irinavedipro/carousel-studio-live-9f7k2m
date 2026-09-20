@@ -8,7 +8,7 @@ const ICON_GLYPHS = {
   ios_share: '↥', palette: '◉', text_fields: 'Tt', undo: '↶'
 };
 $$('.material-symbols-rounded').forEach(icon => {
-  icon.dataset.glyph = ICON_GLYPHS[icon.textContent.trim()] || '•';
+  icon.textContent = ICON_GLYPHS[icon.textContent.trim()] || '•';
   icon.setAttribute('aria-hidden', 'true');
 });
 
