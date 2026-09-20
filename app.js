@@ -5,12 +5,11 @@ const ICON_GLYPHS = {
   add: '+', add_photo_alternate: '▣+', arrow_back: '←', arrow_forward: '→', auto_awesome: '✦',
   chevron_right: '›', close: '×', content_copy: '▣', delete: '⌫', favorite: '♥',
   format_align_left: '≡', format_align_center: '≡', format_align_right: '≡', image: '▣', info: 'ⓘ',
-  ios_share: '↥', palette: '◉', text_fields: 'Tt', undo: '↶'
+  ios_share: '↥', palette: '◉', text_fields: 'Tt', undo: '↶', call_split: '⑂', merge: '↥',
+  arrow_upward: '↑', arrow_downward: '↓'
 };
-$$('.material-symbols-rounded').forEach(icon => {
-  icon.textContent = ICON_GLYPHS[icon.textContent.trim()] || '•';
-  icon.setAttribute('aria-hidden', 'true');
-});
+function hydrateIcons(root=document) { $$('.material-symbols-rounded',root).forEach(icon => { const name=icon.textContent.trim(); if(ICON_GLYPHS[name]) icon.textContent=ICON_GLYPHS[name]; icon.setAttribute('aria-hidden','true'); }); }
+hydrateIcons();
 
 const BUILT_IN_PHOTOS = [
   { url: './assets/editorial/portrait-sea.webp', name: 'Портрет у моря' },
@@ -54,7 +53,24 @@ const PALETTES = [
   { name: 'Бумага и вино', colors: ['#f3ecdf', '#963344', '#6a6a5d', '#252a2f'] },
   { name: 'Море и камень', colors: ['#e9ece8', '#547389', '#7d7869', '#17232a'] },
   { name: 'Шафран', colors: ['#f4e6cb', '#c66b33', '#65705f', '#26201d'] },
-  { name: 'Чернила', colors: ['#f0f0eb', '#48505c', '#7d242c', '#101313'] }
+  { name: 'Чернила', colors: ['#f0f0eb', '#48505c', '#7d242c', '#101313'] },
+  { name: 'Пыльная роза', colors: ['#f6e7e3', '#b46f72', '#8b7770', '#35282b'] },
+  { name: 'Олива', colors: ['#eee8d8', '#7a8060', '#b08b57', '#252820'] },
+  { name: 'Кобальт', colors: ['#f1eee4', '#315a9b', '#d06c4e', '#172136'] },
+  { name: 'Слива', colors: ['#f4e8ee', '#7f4667', '#ba8c72', '#281d29'] },
+  { name: 'Терракота', colors: ['#f4e6d7', '#b85f43', '#788071', '#30241f'] },
+  { name: 'Мята', colors: ['#edf4eb', '#5f8f7a', '#d4a85e', '#19302b'] },
+  { name: 'Лимон и графит', colors: ['#f3efce', '#d2c333', '#80847c', '#202322'] },
+  { name: 'Ночной синий', colors: ['#e7edf4', '#4f6a96', '#b68a6b', '#151d2b'] }
+];
+
+const COMPOSITIONS = [
+  { id:'editorial', name:'Журнал', main:{x:8,y:56,width:84,size:112,align:'left'}, accent:{x:8,y:74,width:84,size:88,align:'left'} },
+  { id:'center', name:'По центру', main:{x:10,y:38,width:80,size:104,align:'center'}, accent:{x:14,y:61,width:72,size:76,align:'center'} },
+  { id:'bottom', name:'Снизу', main:{x:8,y:67,width:84,size:96,align:'left'}, accent:{x:8,y:82,width:84,size:68,align:'left'} },
+  { id:'quote', name:'Цитата', main:{x:12,y:29,width:76,size:82,align:'center'}, accent:{x:18,y:69,width:64,size:62,align:'center'} },
+  { id:'poster', name:'Плакат', main:{x:5,y:45,width:90,size:132,align:'left'}, accent:{x:52,y:78,width:42,size:54,align:'right'} },
+  { id:'minimal', name:'Минимал', main:{x:10,y:18,width:72,size:72,align:'left'}, accent:{x:10,y:82,width:70,size:52,align:'left'} }
 ];
 
 const DEMO_TEXT = 'Личная свобода начинается с ясности. Система должна помогать, а не наказывать. Маленькие шаги меняют всё. Я выбираю себя каждый день. Больше жизни в моменте. И это только начало. В гармонии с собой.';
@@ -110,6 +126,8 @@ function makeSlide(text, photoIndex = null) {
     id: `slide-${Date.now()}-${slideSeed++}`,
     originalText: String(text || '').trim(),
     photoIndex,
+    layout: 'editorial',
+    backgroundColor: null,
     brightness: 92,
     shade: 46,
     blocks: {
@@ -137,7 +155,7 @@ function segmentText(text) {
 
 function createSlides(parts) {
   const photos = activePhotos();
-  state.slides = parts.slice(0,10).map((part, index) => makeSlide(part, state.textOnly ? null : photos.length ? (state.coverPhotoIndex + index) % photos.length : null));
+  state.slides = parts.slice(0,10).map((part, index) => makeSlide(part, state.textOnly || index >= photos.length ? null : (state.coverPhotoIndex + index) % photos.length));
   state.activeSlide = 0;
 }
 
@@ -204,7 +222,7 @@ function applyPhoto(photoElement, shadeElement, slide) {
   const photo = photoForSlide(slide);
   const palette = currentPalette();
   photoElement.style.backgroundImage = photo ? `url("${photo.url}")` : 'none';
-  photoElement.style.backgroundColor = photo ? palette.colors[3] : palette.colors[(state.activeSlide + 1) % palette.colors.length];
+  photoElement.style.backgroundColor = photo ? palette.colors[3] : (slide?.backgroundColor || palette.colors[(state.activeSlide + 1) % palette.colors.length]);
   photoElement.style.filter = `brightness(${(slide?.brightness ?? 92) / 100})`;
   shadeElement.style.background = photo ? `linear-gradient(180deg,rgba(4,6,6,.12),rgba(4,6,6,.04) 34%,rgba(4,6,6,${Math.max(.18,(slide?.shade ?? 46)/100)}))` : 'rgba(0,0,0,.08)';
 }
@@ -249,7 +267,9 @@ function renderSplit() {
   $('#segmentCount').textContent = `${state.slides.length} ${cardWord(state.slides.length)}`;
   const maxLength = Math.max(0,...state.slides.map(slide => slide.originalText.length));
   $('#densityStatus').textContent = maxLength > 180 ? 'Есть плотный текст' : 'Плотность нормальная';
-  $('#segmentList').innerHTML = state.slides.map((slide,index) => `<article class="segment-card" data-index="${index}"><span class="segment-number">${index + 1}</span><textarea aria-label="Текст карточки ${index + 1}">${escapeHtml(stripTerminalPeriod(slide.originalText))}</textarea><div class="segment-controls"><button data-action="split" type="button"><span class="material-symbols-rounded">call_split</span>Разделить</button>${index ? '<button data-action="merge" type="button"><span class="material-symbols-rounded">merge</span>Объединить выше</button><button data-action="up" type="button" aria-label="Выше"><span class="material-symbols-rounded">arrow_upward</span></button>' : ''}${index < state.slides.length - 1 ? '<button data-action="down" type="button" aria-label="Ниже"><span class="material-symbols-rounded">arrow_downward</span></button>' : ''}<button data-action="remove" type="button" aria-label="Удалить"><span class="material-symbols-rounded">delete</span></button></div></article>`).join('');
+  $('#segmentList').innerHTML = state.slides.map((slide,index) => `<article class="segment-card" data-index="${index}"><span class="segment-number">${index + 1}</span><textarea aria-label="Текст карточки ${index + 1}">${escapeHtml(stripTerminalPeriod(slide.originalText))}</textarea><div class="segment-controls"><button data-action="toggle-photo" type="button">${photoForSlide(slide) ? 'Сделать без фото' : 'Добавить фото'}</button><button data-action="split" type="button"><span class="material-symbols-rounded">call_split</span>Разделить</button>${index ? '<button data-action="merge" type="button"><span class="material-symbols-rounded">merge</span>Объединить выше</button><button data-action="up" type="button" aria-label="Выше"><span class="material-symbols-rounded">arrow_upward</span></button>' : ''}${index < state.slides.length - 1 ? '<button data-action="down" type="button" aria-label="Ниже"><span class="material-symbols-rounded">arrow_downward</span></button>' : ''}<button data-action="remove" type="button" aria-label="Удалить"><span class="material-symbols-rounded">delete</span></button></div></article>`).join('');
+  hydrateIcons($('#segmentList'));
+  renderPalettes($('#splitPalettes'));
   $$('.segment-card').forEach(card => {
     const index = Number(card.dataset.index);
     card.querySelector('textarea').addEventListener('input', event => { applyTextToSlide(state.slides[index], event.target.value); state.sourceText = state.slides.map(slide => slide.originalText).join(' '); saveDraft(); });
@@ -258,6 +278,10 @@ function renderSplit() {
 }
 
 function editSlideStructure(index, action) {
+  if (action === 'toggle-photo') {
+    const photos=activePhotos();
+    state.slides[index].photoIndex = photoForSlide(state.slides[index]) ? null : (photos.length ? index % photos.length : null);
+  }
   if (action === 'split' && state.slides.length < 10) {
     const text = state.slides[index].originalText;
     const words = text.split(/\s+/);
@@ -294,8 +318,13 @@ function renderProgress() {
 }
 
 function renderPalettes(target = $('#paletteSwatches')) {
-  target.innerHTML = PALETTES.map((palette,index) => `<button class="palette-swatch ${index === state.paletteIndex ? 'is-active' : ''}" data-palette="${index}" type="button" aria-label="Палитра ${palette.name}" style="background:${palette.colors[1]}"></button>`).join('');
-  $$('[data-palette]',target).forEach(button => button.addEventListener('click', () => { state.paletteIndex = Number(button.dataset.palette); renderTinder(); renderEditor(); saveDraft(); }));
+  target.innerHTML = PALETTES.map((palette,index) => `<button class="palette-swatch ${index === state.paletteIndex ? 'is-active' : ''}" data-palette="${index}" type="button" title="${escapeHtml(palette.name)}" aria-label="Палитра ${escapeHtml(palette.name)}" style="background:conic-gradient(${palette.colors.join(',')})"></button>`).join('');
+  $$('[data-palette]',target).forEach(button => button.addEventListener('click', () => {
+    state.paletteIndex = Number(button.dataset.palette);
+    const colors=currentPalette().colors;
+    state.slides.forEach(slide=>{ slide.blocks.main.color=colors[0]; slide.blocks.accent.color=colors[1]; if(slide.photoIndex===null) slide.backgroundColor=colors[3]; });
+    renderSplit(); renderTinder(); renderEditor(); saveDraft();
+  }));
 }
 
 function renderTinder() {
@@ -310,6 +339,12 @@ function renderTinder() {
   $('#headlineMain').textContent = slide.blocks.main.text;
   $('#headlineAccent').textContent = slide.blocks.accent.text;
   $('#headlineAccent').hidden = !slide.blocks.accent.text;
+  const palette=currentPalette();
+  $('#headlineMain').style.color=palette.colors[0];
+  $('#headlineAccent').style.color=palette.colors[1];
+  $('#tinderCanvas').style.borderColor=palette.colors[1];
+  const textLength=(slide.blocks.main.text+slide.blocks.accent.text).length;
+  $('#canvasHeadline').style.setProperty('--font-scale', textLength>150 ? .48 : textLength>110 ? .58 : textLength>78 ? .7 : textLength>52 ? .84 : 1);
   $('#canvasIndex').textContent = `01 / ${String(state.slides.length).padStart(2,'0')}`;
   $('#pairName').textContent = pair.name;
   $('#pairCharacter').textContent = pair.character;
@@ -402,8 +437,25 @@ function renderEditor() {
   $('#editorGuides').hidden = !state.showGuides;
   renderEditorFilmstrip();
   renderPalettes($('#editorPalettes'));
+  renderCompositions();
   renderSelectedBlockControls();
   $('#deleteCard').disabled = state.slides.length <= 1;
+  $('#removePhoto').disabled = !photoForSlide(slide);
+}
+
+function renderCompositions() {
+  const slide=currentSlide();
+  if(!slide)return;
+  $('#compositionOptions').innerHTML=COMPOSITIONS.map(item=>`<button class="composition-chip ${slide.layout===item.id?'is-active':''}" data-composition="${item.id}" type="button">${item.name}</button>`).join('');
+  $$('[data-composition]',$('#compositionOptions')).forEach(button=>button.addEventListener('click',()=>applyComposition(button.dataset.composition)));
+}
+
+function applyComposition(id) {
+  const slide=currentSlide(); const preset=COMPOSITIONS.find(item=>item.id===id);
+  if(!slide||!preset)return;
+  slide.layout=id;
+  ['main','accent'].forEach(key=>Object.assign(slide.blocks[key],preset[key]));
+  renderEditor(); saveDraft();
 }
 
 function renderSelectedBlockControls() {
@@ -467,6 +519,38 @@ function editorPanel(name) {
   $('#textPanel').hidden = name !== 'text'; $('#photoPanel').hidden = name !== 'photo'; $('#stylePanel').hidden = name !== 'style';
 }
 
+function rgbHex(r,g,b) { return `#${[r,g,b].map(value=>Math.max(0,Math.min(255,value)).toString(16).padStart(2,'0')).join('')}`; }
+
+async function extractPalette(file) {
+  const url=URL.createObjectURL(file);
+  try {
+    const image=await new Promise((resolve,reject)=>{ const item=new Image(); item.onload=()=>resolve(item); item.onerror=reject; item.src=url; });
+    const canvas=document.createElement('canvas'); canvas.width=64; canvas.height=64;
+    const context=canvas.getContext('2d',{willReadFrequently:true}); context.drawImage(image,0,0,64,64);
+    const buckets=new Map(); const data=context.getImageData(0,0,64,64).data;
+    for(let i=0;i<data.length;i+=20){ if(data[i+3]<180)continue; const r=Math.round(data[i]/32)*32,g=Math.round(data[i+1]/32)*32,b=Math.round(data[i+2]/32)*32; const key=`${r},${g},${b}`; buckets.set(key,(buckets.get(key)||0)+1); }
+    const picked=[];
+    [...buckets.entries()].sort((a,b)=>b[1]-a[1]).forEach(([key])=>{ const color=key.split(',').map(Number); if(picked.length<8&&picked.every(other=>Math.hypot(color[0]-other[0],color[1]-other[1],color[2]-other[2])>74))picked.push(color); });
+    while(picked.length<4)picked.push([[242,236,223],[150,51,68],[106,106,93],[37,42,47]][picked.length]);
+    const lum=color=>.2126*color[0]+.7152*color[1]+.0722*color[2];
+    const saturation=color=>Math.max(...color)-Math.min(...color);
+    const sorted=[...picked].sort((a,b)=>lum(a)-lum(b)); const dark=sorted[0],light=sorted.at(-1);
+    const middle=sorted.slice(1,-1); const accent=[...middle].sort((a,b)=>saturation(b)-saturation(a))[0]||sorted[1]; const muted=middle.find(item=>item!==accent)||sorted[Math.floor(sorted.length/2)];
+    return [light,accent,muted,dark].map(color=>rgbHex(...color));
+  } finally { URL.revokeObjectURL(url); }
+}
+
+async function importPaletteFile(file) {
+  if(!file)return;
+  showToast('Извлекаю цвета…');
+  const colors=await extractPalette(file);
+  PALETTES.push({name:'Из Pinterest',colors}); state.paletteIndex=PALETTES.length-1;
+  ['customLight','customAccent','customMuted','customDark'].forEach((id,index)=>{$(`#${id}`).value=colors[index];});
+  state.slides.forEach(slide=>{slide.blocks.main.color=colors[0];slide.blocks.accent.color=colors[1];if(slide.photoIndex===null)slide.backgroundColor=colors[3];});
+  if($('#paletteDialog').open)$('#paletteDialog').close();
+  renderSplit(); renderTinder(); renderEditor(); saveDraft(); showToast('Палитра из изображения готова');
+}
+
 function addEditorCard() {
   if (state.slides.length >= 10) return showToast('Максимум 10 карточек');
   state.slides.splice(state.activeSlide + 1,0,makeSlide('Новая карточка',null));
@@ -519,7 +603,7 @@ async function renderSlideCanvas(index) {
   const canvas = document.createElement('canvas'); canvas.width=1080; canvas.height=1350;
   const ctx = canvas.getContext('2d');
   const palette = currentPalette();
-  ctx.fillStyle = palette.colors[(index + 1) % palette.colors.length]; ctx.fillRect(0,0,1080,1350);
+  ctx.fillStyle = slide.backgroundColor || palette.colors[(index + 1) % palette.colors.length]; ctx.fillRect(0,0,1080,1350);
   const photo = photoForSlide(slide);
   if (photo) { const image = await loadImage(photo.url); ctx.save(); ctx.filter = `brightness(${slide.brightness}%)`; drawImageCover(ctx,image,1080,1350); ctx.restore(); const shade = ctx.createLinearGradient(0,0,0,1350); shade.addColorStop(0,'rgba(4,6,6,.10)'); shade.addColorStop(.38,'rgba(4,6,6,.03)'); shade.addColorStop(1,`rgba(4,6,6,${Math.max(.18,slide.shade/100)})`); ctx.fillStyle=shade; ctx.fillRect(0,0,1080,1350); }
   ctx.fillStyle='rgba(255,255,255,.84)'; ctx.font='500 22px "Onest"'; ctx.textAlign='left'; ctx.fillText('ВАША ИСТОРИЯ',72,72); ctx.textAlign='right'; ctx.fillText(`${String(index+1).padStart(2,'0')} / ${String(state.slides.length).padStart(2,'0')}`,1008,72);
@@ -592,6 +676,7 @@ function openSaveDialog() {
 $('#uploadPhotos').addEventListener('click',()=>$('#photoInput').click());
 $('#addMorePhotos').addEventListener('click',()=>$('#photoInput').click());
 $('#replacePhoto').addEventListener('click',()=>{ state.replaceSlide=state.activeSlide; $('#photoInput').click(); });
+$('#removePhoto').addEventListener('click',()=>{ const slide=currentSlide(); if(!slide)return; slide.photoIndex=null; slide.backgroundColor=currentPalette().colors[3]; renderEditor(); saveDraft(); showToast('Карточка теперь без фото'); });
 $('#photoInput').addEventListener('change',event => {
   const files=[...event.target.files].slice(0,Math.max(0,10-state.photos.length));
   files.forEach(file => state.photos.push({url:URL.createObjectURL(file),name:file.name,local:true}));
@@ -609,7 +694,9 @@ $('#openDemo').addEventListener('click',()=>{ state.isDemo=true; state.textOnly=
 $('#backToStart').addEventListener('click',()=>{ renderStart(); showScreen('start'); });
 $('#autoSplit').addEventListener('click',()=>{ createSlides(segmentText(state.sourceText)); renderSplit(); saveDraft(); });
 $('#addTextCard').addEventListener('click',()=>{ if(state.slides.length>=10)return showToast('Максимум 10 карточек'); state.slides.push(makeSlide('Новая карточка',null)); renderSplit(); saveDraft(); });
-$('#confirmSplit').addEventListener('click',()=>{ if(!state.slides.length)return showToast('Добавьте текст'); state.pairIndex=0; state.liked=[]; state.choiceHistory=[]; state.selectedPair=null; renderTinder(); showScreen('tinder'); saveDraft(); });
+const goToTinder=()=>{ if(!state.slides.length)return showToast('Добавьте текст'); state.pairIndex=0; state.liked=[]; state.choiceHistory=[]; state.selectedPair=null; renderTinder(); showScreen('tinder'); saveDraft(); };
+$('#confirmSplit').addEventListener('click',goToTinder);
+$('#confirmSplitBottom').addEventListener('click',goToTinder);
 $('#openSplit').addEventListener('click',()=>{ renderSplit(); showScreen('split'); });
 $('#editSplit').addEventListener('click',()=>{ renderSplit(); showScreen('split'); });
 $('#rejectFont').addEventListener('click',()=>chooseFont(false));
@@ -623,8 +710,11 @@ $('#fontInfo').addEventListener('click',()=>{ const pair=currentPair(); $('#dial
 $('#closeInfo').addEventListener('click',()=>$('#infoDialog').close());
 $('#customPaletteButton').addEventListener('click',()=>$('#paletteDialog').showModal());
 $('#editorCustomPalette').addEventListener('click',()=>$('#paletteDialog').showModal());
+$('#importPaletteImage').addEventListener('click',()=>$('#paletteImageInput').click());
+$('#importPaletteFromDialog').addEventListener('click',()=>$('#paletteImageInput').click());
+$('#paletteImageInput').addEventListener('change',async event=>{ const [file]=event.target.files; try{await importPaletteFile(file);}catch(error){console.error(error);showToast('Не получилось прочитать изображение');} event.target.value=''; });
 $('#closePalette').addEventListener('click',()=>$('#paletteDialog').close());
-$('#applyCustomPalette').addEventListener('click',()=>{ PALETTES.push({name:'Моя палитра',colors:[$('#customLight').value,$('#customAccent').value,$('#customMuted').value,$('#customDark').value]}); state.paletteIndex=PALETTES.length-1; $('#paletteDialog').close(); renderTinder(); renderEditor(); saveDraft(); });
+$('#applyCustomPalette').addEventListener('click',()=>{ const colors=[$('#customLight').value,$('#customAccent').value,$('#customMuted').value,$('#customDark').value]; PALETTES.push({name:'Моя палитра',colors}); state.paletteIndex=PALETTES.length-1; state.slides.forEach(slide=>{slide.blocks.main.color=colors[0];slide.blocks.accent.color=colors[1];if(slide.photoIndex===null)slide.backgroundColor=colors[3];}); $('#paletteDialog').close(); renderSplit(); renderTinder(); renderEditor(); saveDraft(); });
 
 const tinderCanvas=$('#tinderCanvas');
 tinderCanvas.addEventListener('pointerdown',event=>{ state.pointerStart=event.clientX; tinderCanvas.setPointerCapture(event.pointerId); });

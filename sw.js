@@ -1,4 +1,4 @@
-const CACHE = 'carousel-studio-v13';
+const CACHE = 'carousel-studio-v14';
 const ASSETS = [
   './',
   './index.html',

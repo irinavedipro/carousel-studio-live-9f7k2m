@@ -120,6 +120,13 @@ button:disabled { opacity: .38; cursor: not-allowed; }
 .segment-controls { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px; }
 .segment-controls button { min-height: 30px; display: inline-flex; align-items: center; gap: 3px; padding: 0 8px; border: 1px solid var(--line); border-radius: 9px; color: var(--muted); background: transparent; font-size: .62rem; cursor: pointer; }
 .segment-controls .material-symbols-rounded { --icon-size: .95rem; }
+.split-finish { position: sticky; z-index: 20; bottom: max(8px,env(safe-area-inset-bottom)); display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 14px; align-items: center; margin: 18px 0 8px; padding: 13px; border: 1px solid var(--line-strong); border-radius: 20px; background: rgba(18,23,22,.96); box-shadow: 0 18px 50px rgba(0,0,0,.52); backdrop-filter: blur(16px); }
+.split-palette-choice { min-width: 0; display: flex; align-items: center; gap: 10px; }
+.split-palette-choice > div:first-child { display: grid; flex: 0 1 240px; gap: 3px; }
+.split-palette-choice strong { font-size: .77rem; }
+.split-palette-choice span { color: var(--muted); font-size: .58rem; line-height: 1.3; }
+.palette-gallery { min-width: 0; display: flex; gap: 6px; overflow-x: auto; padding: 4px; }
+.palette-gallery .palette-swatch { flex: 0 0 32px; }
 
 .catalog-progress { display: grid; justify-items: center; gap: 7px; }
 .progress-dots { width: min(190px, 46vw); display: grid; grid-template-columns: repeat(8,1fr); gap: 5px; }
@@ -134,6 +141,7 @@ button:disabled { opacity: .38; cursor: not-allowed; }
 .mini-storyboard i { flex: 1 1 0; min-width: 34px; aspect-ratio: 4/5; border-radius: 7px; background: var(--surface-3) center/cover; box-shadow: inset 0 0 0 1px var(--line); }
 .tinder-instruction { margin: 11px 3px 0; color: var(--muted); font-size: .7rem; }
 .fitting-room { display: grid; grid-template-columns: minmax(0,1fr) 82px; gap: 10px; align-items: start; margin-top: 12px; }
+#tinderCanvas { touch-action: pan-y; }
 .canvas-column { min-width: 0; }
 .pair-caption { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 2px 0; }
 .pair-caption strong, .pair-caption span { display: block; }
@@ -225,6 +233,11 @@ button:disabled { opacity: .38; cursor: not-allowed; }
 .switch-inline { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: .65rem; }
 .switch-inline input { accent-color: var(--paper); }
 .dock-palettes { display: flex; gap: 7px; }
+.style-panel { overflow-x: auto; }
+.composition-strip { display: flex; gap: 6px; }
+.composition-chip { flex: 0 0 auto; min-height: 32px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; color: var(--muted); background: transparent; font-size: .58rem; cursor: pointer; }
+.composition-chip.is-active { color: var(--ink); background: var(--paper); }
+#removePhoto { color: #ffd2ce; border-color: rgba(255,129,123,.34); }
 
 dialog { width: min(430px,calc(100% - 24px)); padding: 24px; border: 1px solid var(--line-strong); border-radius: 23px; color: var(--text); background: #151a19; box-shadow: var(--shadow); }
 dialog::backdrop { background: rgba(0,0,0,.76); backdrop-filter: blur(7px); }
@@ -262,6 +275,11 @@ dialog > p { color: var(--muted); line-height: 1.5; }
   .finalist-grid { grid-template-columns: 1fr 1fr; }
   .compare-footer { position: fixed; left: 9px; right: 9px; }
   .compare-screen { padding-bottom: 90px; }
+  .split-screen { padding-bottom: 92px; }
+  .split-finish { grid-template-columns: 1fr; padding: 11px; }
+  .split-palette-choice { display: grid; grid-template-columns: 1fr auto; }
+  .split-palette-choice > div:first-child { grid-column: 1/-1; }
+  .split-finish > .primary-action { width: 100%; }
 }
 
 @media (max-width: 390px) {
@@ -284,6 +302,8 @@ dialog > p { color: var(--muted); line-height: 1.5; }
   .editor-app { grid-template-rows: minmax(0,1fr) 84px 132px; }
   .editor-dock { padding-inline: 7px; }
   .dock-panel { gap: 7px; }
+  .style-panel { gap: 6px; }
+  .composition-chip { padding-inline: 8px; }
   .selected-block-label { flex-basis: 82px; }
   .align-control button { width: 28px; height: 28px; }
 }
