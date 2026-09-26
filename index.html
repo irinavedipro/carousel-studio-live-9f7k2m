@@ -7,22 +7,21 @@
   <meta name="theme-color" content="#0b0e0e">
   <meta name="description" content="Мобильная студия кириллических каруселей для Instagram.">
   <title>Carousel Studio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700&family=Finlandica:ital,wght@0,400..700;1,400..700&family=Golos+Text:wght@400..900&family=Manrope:wght@400;500;600;700;800&family=Onest:wght@400..800&family=Piazzolla:ital,opsz,wght@0,8..30,400..700;1,8..30,400..700&family=Prata&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="./assets/fonts/fonts.css">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="stylesheet" href="./styles.css?v=14">
+  <link rel="stylesheet" href="./styles.6833ab8e8c2c.css">
 </head>
 <body>
   <main class="studio-shell">
     <section class="screen start-screen" id="screenStart" aria-labelledby="startHeading">
       <header class="brand-header"><span class="brand-mark">C</span><span>Carousel Studio</span><button class="ghost-button" id="openDemo" type="button">Посмотреть демо</button></header>
+      <div class="resume-draft" id="resumeDraft" hidden><div><strong>У вас есть сохранённая карусель</strong><span>Фотографии, текст и оформление на этом устройстве</span></div><button class="primary-action" id="resumeProject" type="button">Продолжить</button><button class="ghost-button" id="newProject" type="button">Новая карусель</button></div>
       <div class="start-layout">
         <section class="start-copy">
           <p class="eyebrow">ШАГ 1 · ВАШ МАТЕРИАЛ</p>
           <h1 id="startHeading">Сначала — ваши фото и текст</h1>
-          <p class="lead">Загрузите свои кадры и вставьте текст целиком. Чужие демо-фото никогда не попадут в ваш экспорт.</p>
+          <p class="lead">Выберите до 10 фотографий и вставьте текст целиком. Из него получится от 1 до 10 карточек. Для части карточек можно оставить только цветной фон.</p>
 
           <div class="start-card">
             <div class="field-heading"><div><strong>1. Фотографии</strong><span>От 1 до 10 кадров</span></div><b id="startPhotoCount">0 / 10</b></div>
@@ -59,22 +58,30 @@
         </section>
         <section class="segment-panel"><div class="segment-heading"><div><span>Структура карусели</span><strong id="segmentCount">0 карточек</strong></div><span id="densityStatus">Плотность нормальная</span></div><div class="segment-list" id="segmentList"></div></section>
       </div>
-      <div class="split-finish"><div class="split-palette-choice"><div><strong>Цветовое настроение</strong><span>Выберите готовое или загрузите скриншот палитры из Pinterest</span></div><div class="palette-gallery" id="splitPalettes"></div><input id="paletteImageInput" type="file" accept="image/*" hidden><button class="secondary-action" id="importPaletteImage" type="button">Загрузить палитру</button></div><button class="primary-action" id="confirmSplitBottom" type="button">Перейти к шрифтам <span class="material-symbols-rounded">arrow_forward</span></button></div>
+      <div class="split-finish"><div class="split-palette-choice"><div><strong>Палитра: <span id="splitPaletteName"></span></strong><span>Выберите сочетание или загрузите скриншот палитры</span></div><div class="palette-gallery" id="splitPalettes"></div><input id="paletteImageInput" type="file" accept="image/*" hidden><button class="secondary-action" id="importPaletteImage" type="button">Своя палитра</button></div><div class="palette-example" id="splitPalettePreview" aria-label="Пример выбранной палитры"></div><button class="primary-action" id="confirmSplitBottom" type="button">Перейти к шрифтам <span class="material-symbols-rounded">arrow_forward</span></button></div>
     </section>
 
     <section class="screen tinder-screen" id="screenTinder" hidden aria-labelledby="tinderHeading">
       <header class="tool-header"><button class="icon-button" id="openSplit" type="button" aria-label="Вернуться к разбивке"><span class="material-symbols-rounded">arrow_back</span></button><div class="catalog-progress"><strong id="pairProgress">1 из 28</strong><div class="progress-dots" id="progressDots" aria-hidden="true"></div></div><button class="undo-button" id="undoChoice" type="button" disabled><span class="material-symbols-rounded">undo</span><span>Вернуть</span></button></header>
       <button class="split-summary" id="editSplit" type="button"><span class="split-summary-title"><b id="cardCount">0 карточек</b><u>изменить</u><span class="material-symbols-rounded">chevron_right</span></span><span class="mini-storyboard" id="miniStoryboard" aria-hidden="true"></span></button>
       <h1 class="sr-only" id="tinderHeading">Выберите шрифтовой стиль</h1>
-      <p class="tinder-instruction">Свайп влево — не моё. Вправо — сохранить стиль.</p>
-      <div class="fitting-room"><div class="canvas-column"><article class="ig-canvas" id="tinderCanvas" tabindex="0" aria-label="Вариант шрифтов"><div class="canvas-photo" id="canvasPhoto"></div><div class="canvas-shade" id="canvasShade"></div><div class="canvas-copy"><div class="canvas-meta"><span>ВАША ОБЛОЖКА</span><span id="canvasIndex">01 / 01</span></div><div class="canvas-headline" id="canvasHeadline"><span id="headlineMain"></span><em id="headlineAccent"></em></div></div><span class="swipe-stamp stamp-no">НЕ МОЁ</span><span class="swipe-stamp stamp-yes">МОЁ</span></article><div class="pair-caption"><div><strong id="pairName"></strong><span id="pairCharacter"></span></div><button class="quiet-button" id="fontInfo" type="button"><span class="material-symbols-rounded">info</span> О паре</button></div></div><aside class="canvas-tools" aria-label="Настройки примерки"><div class="format-chip"><strong>Instagram · 4:5</strong><span>1080 × 1350</span></div><div class="palette-tools"><span>Палитра</span><div id="paletteSwatches"></div><button class="add-color" id="customPaletteButton" type="button" aria-label="Добавить свою палитру"><span class="material-symbols-rounded">add</span></button></div></aside></div>
+      <p class="tinder-instruction">Влево — не моё, вправо — моё. После первого «Моё» можно идти дальше.</p>
+      <div class="fitting-room">
+        <div class="canvas-column"><article class="ig-canvas" id="tinderCanvas" tabindex="0" aria-label="Вариант шрифтов">
+          <div class="canvas-photo" id="canvasPhoto"></div><div class="canvas-shade" id="canvasShade"></div>
+          <div class="canvas-meta preview-meta"><span>ВАША ИСТОРИЯ</span><span id="canvasIndex">01 / 01</span></div>
+          <div id="canvasHeadline"><span class="preview-block block-main" id="headlineMain"></span><em class="preview-block block-accent" id="headlineAccent"></em></div>
+          <span class="swipe-stamp stamp-no">НЕ МОЁ</span><span class="swipe-stamp stamp-yes">МОЁ</span>
+        </article><div class="pair-caption"><div><strong id="pairName"></strong><span id="pairCharacter"></span></div><button class="quiet-button" id="fontInfo" type="button"><span class="material-symbols-rounded">info</span> О паре</button></div></div>
+        <aside class="canvas-tools" aria-label="Настройки примерки"><div class="format-chip"><strong>Instagram · 4:5</strong><span>1080 × 1350</span></div><div class="palette-tools"><span id="tinderPaletteName">Палитра</span><div id="paletteSwatches"></div><button class="add-color" id="customPaletteButton" type="button" aria-label="Добавить свою палитру"><span class="material-symbols-rounded">add</span></button></div></aside>
+      </div>
       <div class="tinder-actions"><button class="decision decision-no" id="rejectFont" type="button"><span class="material-symbols-rounded">close</span>Не моё</button><button class="decision decision-yes" id="likeFont" type="button"><span class="material-symbols-rounded filled">favorite</span>Моё</button></div>
       <div class="tinder-next" id="tinderNext" hidden><div><span>Сохранено стилей</span><strong id="likedCount">0</strong></div><button class="primary-action" id="compareSelected" type="button">Сравнить выбранные <span class="material-symbols-rounded">arrow_forward</span></button></div>
     </section>
 
     <section class="screen compare-screen" id="screenCompare" hidden aria-labelledby="compareHeading">
       <header class="section-header"><button class="icon-button" id="backFromCompare" type="button" aria-label="Назад к Tinder"><span class="material-symbols-rounded">arrow_back</span></button><div><p>Шаг 4</p><h1 id="compareHeading">Выберите один стиль</h1></div><span></span></header>
-      <p class="compare-intro">Одна фотография, один текст и одни переносы. Отличается только типографика.</p>
+      <p class="compare-intro">Ваша обложка с выбранными парами. Фон, цвета и расположение текста сохранены.</p>
       <div class="finalist-grid" id="finalistGrid"></div>
       <div class="compare-footer" id="compareFooter" hidden><div><span>Выбран стиль</span><strong id="selectedStyleName"></strong></div><button class="primary-action" id="openEditor" type="button">Перейти в редактор <span class="material-symbols-rounded">arrow_forward</span></button></div>
     </section>
@@ -86,8 +93,8 @@
         <div class="editor-film-row"><button class="round-action" id="addEditorCard" type="button" aria-label="Добавить текстовую карточку"><span class="material-symbols-rounded">add</span></button><div class="slide-filmstrip" id="editorFilmstrip"></div><button class="round-action" id="duplicateCard" type="button" aria-label="Дублировать карточку"><span class="material-symbols-rounded">content_copy</span></button><button class="round-action danger-action" id="deleteCard" type="button" aria-label="Удалить карточку"><span class="material-symbols-rounded">delete</span></button></div>
         <aside class="editor-dock">
           <div class="dock-tabs"><button class="dock-tab is-active" data-panel="text" type="button"><span class="material-symbols-rounded">text_fields</span>Текст</button><button class="dock-tab" data-panel="photo" type="button"><span class="material-symbols-rounded">image</span>Фото</button><button class="dock-tab" data-panel="style" type="button"><span class="material-symbols-rounded">palette</span>Стиль</button></div>
-          <div class="dock-panel" id="textPanel"><div class="selected-block-label"><span>Выбран блок</span><strong id="selectedBlockName">Основной текст</strong></div><label class="compact-control"><span>Размер</span><input id="blockSize" type="range" min="42" max="140" value="88"></label><label class="color-control"><span>Цвет</span><input id="blockColor" type="color" value="#ffffff"></label><div class="align-control" aria-label="Выравнивание"><button data-align="left" type="button" class="is-active" aria-label="По левому краю"><span class="material-symbols-rounded">format_align_left</span></button><button data-align="center" type="button" aria-label="По центру"><span class="material-symbols-rounded">format_align_center</span></button><button data-align="right" type="button" aria-label="По правому краю"><span class="material-symbols-rounded">format_align_right</span></button></div></div>
-          <div class="dock-panel" id="photoPanel" hidden><label class="compact-control"><span>Яркость</span><input id="editorBrightness" type="range" min="55" max="125" value="92"></label><label class="compact-control"><span>Подложка</span><input id="editorShadeRange" type="range" min="0" max="80" value="42"></label><button class="mini-button" id="replacePhoto" type="button">Заменить</button><button class="mini-button" id="removePhoto" type="button">Без фото</button></div>
+          <div class="dock-panel" id="textPanel"><div class="selected-block-label"><span>Выбран блок</span><strong id="selectedBlockName">Основной текст</strong></div><label class="compact-control"><span>Размер <output id="blockSizeValue">88</output></span><input id="blockSize" type="range" min="24" max="140" value="88"></label><label class="color-control"><span>Свой цвет</span><input id="blockColor" type="color" value="#ffffff"></label><div class="align-control" aria-label="Выравнивание"><button data-align="left" type="button" class="is-active" aria-label="По левому краю"><span class="material-symbols-rounded">format_align_left</span></button><button data-align="center" type="button" aria-label="По центру"><span class="material-symbols-rounded">format_align_center</span></button><button data-align="right" type="button" aria-label="По правому краю"><span class="material-symbols-rounded">format_align_right</span></button></div><div class="block-palette-colors" id="blockPaletteColors" aria-label="Цвета текста из палитры"></div></div>
+          <div class="dock-panel" id="photoPanel" hidden><label class="compact-control"><span>Яркость</span><input id="editorBrightness" type="range" min="55" max="125" value="92"></label><label class="compact-control"><span>Подложка</span><input id="editorShadeRange" type="range" min="0" max="80" value="42"></label><button class="mini-button" id="replacePhoto" type="button">Заменить</button><button class="mini-button" id="removePhoto" type="button">Без фото</button><div class="background-colors" id="backgroundColors" aria-label="Фон карточки"></div></div>
           <div class="dock-panel style-panel" id="stylePanel" hidden><div class="composition-strip" id="compositionOptions"></div><div class="dock-palettes" id="editorPalettes"></div><button class="mini-button" id="editorCustomPalette" type="button">Ещё цвета</button><label class="switch-inline"><input id="editorGuideToggle" type="checkbox" checked><span>Поля</span></label></div>
         </aside>
       </div>
@@ -97,7 +104,8 @@
   <dialog class="info-dialog" id="infoDialog"><button class="dialog-close" id="closeInfo" type="button" aria-label="Закрыть"><span class="material-symbols-rounded">close</span></button><p class="dialog-label">Текущая пара</p><h2 id="dialogPairName"></h2><p id="dialogPairText"></p></dialog>
   <dialog class="palette-dialog" id="paletteDialog"><button class="dialog-close" id="closePalette" type="button" aria-label="Закрыть"><span class="material-symbols-rounded">close</span></button><p class="dialog-label">Своя палитра</p><h2>Не нужно быть дизайнером</h2><p>Загрузите скриншот палитры из Pinterest — четыре цвета выберутся автоматически. Пипетки ниже нужны только для ручной правки.</p><button class="primary-action full-button" id="importPaletteFromDialog" type="button">Загрузить скриншот палитры</button><div class="custom-colors"><label>Светлый<input id="customLight" type="color" value="#f3ecdf"></label><label>Акцент<input id="customAccent" type="color" value="#8c2f39"></label><label>Спокойный<input id="customMuted" type="color" value="#6a6a5d"></label><label>Тёмный<input id="customDark" type="color" value="#252a2f"></label></div><button class="secondary-action full-button" id="applyCustomPalette" type="button">Применить эти цвета</button></dialog>
   <dialog class="save-dialog" id="saveDialog"><button class="dialog-close" id="closeSave" type="button" aria-label="Закрыть"><span class="material-symbols-rounded">close</span></button><p class="dialog-label">Экспорт 1080 × 1350</p><h2>Сохранить карусель</h2><p id="saveStatus">Подготовим все карточки и предложим лучший способ для вашего браузера.</p><button class="primary-action full-button" id="shareCarousel" type="button"><span class="material-symbols-rounded">ios_share</span>Поделиться изображениями</button><button class="secondary-action full-button" id="prepareIndividual" type="button">Сохранить по одной</button><div class="save-links" id="saveLinks"></div><button class="quiet-download" id="downloadZip" type="button">Дополнительно: скачать ZIP</button><p class="save-help" id="saveHelp">Если открылся браузерный список загрузок, ищите файлы в папке «Загрузки» или «Файлы».</p></dialog>
+  <p class="draft-status" id="draftStatus" role="status">Черновик хранится на этом устройстве</p>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./assets/vendor/jszip.min.js"></script><script src="./app.js?v=14"></script>
+  <script src="./assets/vendor/jszip.min.js"></script><script src="./app.2efb5d8b7b14.js"></script>
 </body>
 </html>

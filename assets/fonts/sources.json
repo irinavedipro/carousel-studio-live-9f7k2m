@@ -1,0 +1,288 @@
+[
+  {
+    "family": "Finlandica",
+    "weights": [
+      700
+    ],
+    "files": 2,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/finlandica/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/finlandica"
+  },
+  {
+    "family": "Piazzolla",
+    "weights": [
+      500,
+      600
+    ],
+    "files": 4,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/piazzolla/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/piazzolla"
+  },
+  {
+    "family": "Prata",
+    "weights": [
+      400
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/prata/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/prata"
+  },
+  {
+    "family": "Onest",
+    "weights": [
+      400,
+      500,
+      700
+    ],
+    "files": 3,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/onest/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/onest"
+  },
+  {
+    "family": "Cormorant Garamond",
+    "weights": [
+      500,
+      700
+    ],
+    "files": 4,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/cormorantgaramond"
+  },
+  {
+    "family": "Manrope",
+    "weights": [
+      500
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/manrope"
+  },
+  {
+    "family": "Literata",
+    "weights": [
+      500,
+      600
+    ],
+    "files": 4,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/literata/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/literata"
+  },
+  {
+    "family": "Golos Text",
+    "weights": [
+      500
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/golostext/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/golostext"
+  },
+  {
+    "family": "Commissioner",
+    "weights": [
+      500,
+      700
+    ],
+    "files": 2,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/commissioner/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/commissioner"
+  },
+  {
+    "family": "Bona Nova",
+    "weights": [
+      400,
+      700
+    ],
+    "files": 3,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/bonanova/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/bonanova"
+  },
+  {
+    "family": "Spectral",
+    "weights": [
+      700
+    ],
+    "files": 2,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/spectral/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/spectral"
+  },
+  {
+    "family": "Yeseva One",
+    "weights": [
+      400
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/yesevaone/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/yesevaone"
+  },
+  {
+    "family": "Orelega One",
+    "weights": [
+      400
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/orelegaone/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/orelegaone"
+  },
+  {
+    "family": "Viaoda Libre",
+    "weights": [
+      400
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/viaodalibre/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/viaodalibre"
+  },
+  {
+    "family": "Shafarik",
+    "weights": [
+      400
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/shafarik/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/shafarik"
+  },
+  {
+    "family": "Unbounded",
+    "weights": [
+      600
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/unbounded/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/unbounded"
+  },
+  {
+    "family": "Science Gothic",
+    "weights": [
+      700
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/sciencegothic/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/sciencegothic"
+  },
+  {
+    "family": "Alumni Sans Pinstripe",
+    "weights": [
+      400
+    ],
+    "files": 2,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/alumnisanspinstripe/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/alumnisanspinstripe"
+  },
+  {
+    "family": "Geologica",
+    "weights": [
+      700
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/geologica/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/geologica"
+  },
+  {
+    "family": "Sofia Sans Condensed",
+    "weights": [
+      700
+    ],
+    "files": 2,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/sofiasanscondensed/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/sofiasanscondensed"
+  },
+  {
+    "family": "Wix Madefor Display",
+    "weights": [
+      700
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/wixmadefordisplay/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/wixmadefordisplay"
+  },
+  {
+    "family": "Tektur",
+    "weights": [
+      600
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/tektur/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/tektur"
+  },
+  {
+    "family": "Handjet",
+    "weights": [
+      600
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/handjet/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/handjet"
+  },
+  {
+    "family": "Shantell Sans",
+    "weights": [
+      600
+    ],
+    "files": 2,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/shantellsans/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/shantellsans"
+  },
+  {
+    "family": "Caveat",
+    "weights": [
+      600
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/caveat/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/caveat"
+  },
+  {
+    "family": "Bad Script",
+    "weights": [
+      400
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/badscript/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/badscript"
+  },
+  {
+    "family": "Climate Crisis",
+    "weights": [
+      400
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/climatecrisis/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/climatecrisis"
+  },
+  {
+    "family": "Kablammo",
+    "weights": [
+      400
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/kablammo/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/kablammo"
+  },
+  {
+    "family": "Oi",
+    "weights": [
+      400
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/oi/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/oi"
+  },
+  {
+    "family": "Rubik Marker Hatch",
+    "weights": [
+      400
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/rubikmarkerhatch/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/rubikmarkerhatch"
+  },
+  {
+    "family": "Monomakh",
+    "weights": [
+      400
+    ],
+    "files": 1,
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/monomakh/OFL.txt",
+    "source": "https://github.com/google/fonts/tree/main/ofl/monomakh"
+  }
+]

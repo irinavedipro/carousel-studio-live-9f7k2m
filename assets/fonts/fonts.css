@@ -1,0 +1,353 @@
+/* Local open fonts. See adjacent OFL licenses and sources.json. */
+@font-face {
+  font-family: 'Finlandica';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./finlandica-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Finlandica';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./finlandica-1.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Piazzolla';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./piazzolla-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Piazzolla';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url(./piazzolla-1.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Piazzolla';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./piazzolla-2.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Piazzolla';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(./piazzolla-3.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Prata';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./prata-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./onest-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./onest-1.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./onest-2.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./cormorantgaramond-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./cormorantgaramond-1.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./cormorantgaramond-2.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./cormorantgaramond-3.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./manrope-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Literata';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./literata-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Literata';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url(./literata-1.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Literata';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./literata-2.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Literata';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(./literata-3.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Golos Text';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./golostext-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Commissioner';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./commissioner-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Commissioner';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./commissioner-1.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Bona Nova';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./bonanova-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Bona Nova';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./bonanova-1.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Bona Nova';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./bonanova-2.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./spectral-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./spectral-1.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Yeseva One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./yesevaone-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Orelega One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./orelegaone-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Viaoda Libre';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./viaodalibre-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Shafarik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./shafarik-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(./unbounded-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Science Gothic';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(./sciencegothic-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Alumni Sans Pinstripe';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./alumnisanspinstripe-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Alumni Sans Pinstripe';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./alumnisanspinstripe-1.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Geologica';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./geologica-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Sofia Sans Condensed';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./sofiasanscondensed-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Sofia Sans Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./sofiasanscondensed-1.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Wix Madefor Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./wixmadefordisplay-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Tektur';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(./tektur-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Handjet';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(./handjet-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Shantell Sans';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url(./shantellsans-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Shantell Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(./shantellsans-1.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(./caveat-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Bad Script';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./badscript-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Climate Crisis';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./climatecrisis-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Kablammo';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./kablammo-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Oi';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./oi-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Rubik Marker Hatch';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./rubikmarkerhatch-0.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Monomakh';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./monomakh-0.woff2) format('truetype');
+}
