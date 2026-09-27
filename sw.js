@@ -1,11 +1,13 @@
-const CACHE = 'carousel-studio-app.edbdba3091f8.js-style-profiles.b9a6f54488b6.js-writing-help.970ff0b06ed6.js';
+const CACHE = 'carousel-studio-app.93572dfb1405.js-style-profiles.b9a6f54488b6.js-writing-help.970ff0b06ed6.js-vedi-vibe.ef3f951fc514.js-vedi-vibe-config.b7c7c5470779.js';
 const ASSETS = [
   "./",
   "./index.html",
-  "./app.edbdba3091f8.js",
-  "./styles.42910bd49d8e.css",
+  "./app.93572dfb1405.js",
+  "./styles.45119bc484c2.css",
   "./style-profiles.b9a6f54488b6.js",
   "./writing-help.970ff0b06ed6.js",
+  "./vedi-vibe.ef3f951fc514.js",
+  "./vedi-vibe-config.b7c7c5470779.js",
   "./assets/writing-carousels/CHATGPT_PROMPT.acb331a0ca48.txt",
   "./assets/writing-carousels/SKILL.84035a04d393.md",
   "./assets/writing-carousels/STUDIO_OUTPUT.2d7f5dc404d0.txt",
