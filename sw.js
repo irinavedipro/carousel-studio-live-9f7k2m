@@ -1,9 +1,9 @@
-const CACHE = 'carousel-studio-app.130eb87913ed.js';
+const CACHE = 'carousel-studio-app.6301201975a1.js';
 const ASSETS = [
   "./",
   "./index.html",
-  "./app.130eb87913ed.js",
-  "./styles.c15d0a62d420.css",
+  "./app.6301201975a1.js",
+  "./styles.631fb9fc66c9.css",
   "./manifest.webmanifest",
   "./favicon.svg",
   "./assets/vendor/jszip.min.js",
