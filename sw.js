@@ -1,8 +1,8 @@
-const CACHE = 'carousel-studio-app.6cf6b7d98379.js-style-profiles.b9a6f54488b6.js';
+const CACHE = 'carousel-studio-app.edbdba3091f8.js-style-profiles.b9a6f54488b6.js';
 const ASSETS = [
   "./",
   "./index.html",
-  "./app.6cf6b7d98379.js",
+  "./app.edbdba3091f8.js",
   "./styles.759eccace4ae.css",
   "./style-profiles.b9a6f54488b6.js",
   "./manifest.webmanifest",
