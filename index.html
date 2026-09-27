@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./assets/fonts/fonts.css">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="stylesheet" href="./styles.759eccace4ae.css">
+  <link rel="stylesheet" href="./styles.42910bd49d8e.css">
 </head>
 <body>
   <main class="studio-shell">
@@ -37,10 +37,11 @@
 
           <div class="start-card">
             <label class="field-heading" for="sourceText"><span><strong>2. Текст карусели</strong><small>Вставьте единым полотном — разбивку можно будет исправить</small></span></label>
+            <button class="writing-help-trigger secondary-action" id="openWritingHelp" type="button">Помочь написать текст ↗</button>
             <textarea id="sourceText" rows="8" placeholder="Вставьте сюда весь текст будущей карусели"></textarea>
             <label class="text-only-option"><input id="preparedTextToggle" type="checkbox"><span>Текст уже разделён на карточки</span></label>
             <p class="input-help">Можно вставить текст целиком — сайт предложит техническую разбивку, не AI-редактуру. Вы сможете править её и сам текст на карточках.</p>
-            <details class="text-help"><summary>Если текст уже подготовлен</summary><p>Включите опцию выше. Пустая строка — новая карточка; первая строка — заголовок, следующие — пояснение. Обычный Enter сохраняет перенос. Мы не будем дробить длинные абзацы: вместимость проверим в выбранном стиле.</p></details>
+            <details class="text-help"><summary>Если текст уже подготовлен</summary><p>Включите опцию выше. Между карточками поставьте отдельную строку из трёх дефисов: --- . Первая строка — заголовок, следующие — пояснение. Обычный Enter сохраняет перенос. Если разделителей нет, каждая пустая строка начинает новую карточку. Длинные карточки не дробим автоматически: вместимость проверим в выбранном стиле.</p></details>
             <div class="start-footer"><span id="startHint">Добавьте фото и текст</span><button class="primary-action" id="startProject" type="button" disabled>Разбить на карточки <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button></div>
           </div>
         </section>
@@ -130,8 +131,24 @@
     <button class="primary-action full-button" id="useStyleProfile" type="button" disabled>Использовать этот стиль</button>
     <p class="input-help">На устройстве хранится один «Мой стиль». Файл — резервная копия: его можно перенести в другой браузер или передать другому человеку. Текущая карусель не входит в файл.</p>
   </dialog>
+  <dialog class="writing-help-dialog" id="writingHelpDialog" aria-labelledby="writingHelpHeading">
+    <button class="dialog-close" id="closeWritingHelp" type="button" aria-label="Закрыть помощь с текстом">×</button>
+    <p class="dialog-label">Навык Ирины · Веди Вайб · v0.3</p>
+    <h2 id="writingHelpHeading">Сначала смысл, потом оформление</h2>
+    <p>Превратите заметки, черновик или расшифровку в текст карусели с помощью своего ChatGPT или Claude. Здесь AI не запускается.</p>
+    <ol class="writing-steps"><li>Вставьте промпт в свой AI-чат.</li><li>Добавьте свою тему, материал и пожелания. Попросите готовый текст для Studio.</li><li>Вернитесь сюда, вставьте готовый текст и включите «Текст уже разделён на карточки».</li></ol>
+    <button class="primary-action full-button" id="copyWritingPrompt" type="button">Скопировать промпт</button>
+    <button class="secondary-action full-button" id="downloadWritingSkill" type="button">Скачать навык</button>
+    <p class="input-help">Промпт — вставить в обычный AI-чат. Навык — файл инструкций для тех, кто уже пользуется навыками. Если не знаете, что выбрать, начните с промпта.</p>
+    <div id="manualPromptWrap" hidden><label for="manualWritingPrompt">Полный промпт для ручного копирования</label><textarea id="manualWritingPrompt" rows="6" readonly></textarea></div>
+    <p id="writingHelpStatus" role="status" aria-live="polite"></p>
+    <details class="text-help"><summary>Установка навыка и другие форматы</summary><p>Кнопка скачивает ZIP с папкой навыка. Он предназначен для AI-инструментов с поддержкой навыков, например Codex или Claude. Установка зависит от инструмента и не происходит автоматически.</p><p>В Claude: Customize → Skills → + → Create skill → Upload a skill. Загрузите ZIP и включите навык. В Codex: распакуйте папку навыка в хранилище навыков своего проекта или попросите своего агента помочь установить её. Если не пользуетесь навыками, просто скопируйте промпт в обычный чат.</p><button class="secondary-action full-button" id="downloadWritingPrompt" type="button">Скачать промпт · TXT</button><button class="ghost-button full-button" id="downloadOriginalSkill" type="button">Исходный SKILL.md</button><p>В ZIP — исходный навык и отдельно помеченное дополнение для Studio. Личные документы Ирины не включены. <a href="https://developers.openai.com/codex/skills" target="_blank" rel="noopener noreferrer">Инструкция Codex ↗</a> · <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude" target="_blank" rel="noopener noreferrer">Инструкция Claude ↗</a></p></details>
+    <details class="text-help"><summary>Как текст попадёт на карточки</summary><p>Между карточками — строка из трёх дефисов (---). Первая строка — заголовок, остальные — пояснение. От 1 до 10 карточек, число определяет смысл. Сейчас на карточке два текстовых блока, не отдельный третий крючок. Вместимость зависит от выбранного шрифта: текст и переносы можно менять в редакторе.</p></details>
+    <button class="secondary-action full-button" id="returnWithPreparedText" type="button">Вернуться и вставить готовый текст</button>
+    <p class="input-help">Эта кнопка только включает режим готовых карточек. Ваш текст и фото не заменяются. Studio не отправляет их в AI; в своём чате передавайте только материалы, которыми готовы поделиться.</p>
+  </dialog>
   <p class="draft-status" id="draftStatus" role="status">Черновик хранится на этом устройстве</p>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./assets/vendor/jszip.min.js"></script><script src="./style-profiles.b9a6f54488b6.js"></script><script src="./app.edbdba3091f8.js"></script>
+  <script src="./assets/vendor/jszip.min.js"></script><script src="./style-profiles.b9a6f54488b6.js"></script><script src="./app.edbdba3091f8.js"></script><script src="./writing-help.970ff0b06ed6.js"></script>
 </body>
 </html>

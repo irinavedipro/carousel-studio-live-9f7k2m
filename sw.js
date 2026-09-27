@@ -1,10 +1,14 @@
-const CACHE = 'carousel-studio-app.edbdba3091f8.js-style-profiles.b9a6f54488b6.js';
+const CACHE = 'carousel-studio-app.edbdba3091f8.js-style-profiles.b9a6f54488b6.js-writing-help.970ff0b06ed6.js';
 const ASSETS = [
   "./",
   "./index.html",
   "./app.edbdba3091f8.js",
-  "./styles.759eccace4ae.css",
+  "./styles.42910bd49d8e.css",
   "./style-profiles.b9a6f54488b6.js",
+  "./writing-help.970ff0b06ed6.js",
+  "./assets/writing-carousels/CHATGPT_PROMPT.acb331a0ca48.txt",
+  "./assets/writing-carousels/SKILL.84035a04d393.md",
+  "./assets/writing-carousels/STUDIO_OUTPUT.2d7f5dc404d0.txt",
   "./manifest.webmanifest",
   "./favicon.svg",
   "./assets/vendor/jszip.min.js",
