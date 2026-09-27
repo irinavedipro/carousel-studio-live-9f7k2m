@@ -1,16 +1,17 @@
-const CACHE = 'carousel-studio-app.93572dfb1405.js-style-profiles.b9a6f54488b6.js-writing-help.970ff0b06ed6.js-vedi-vibe.ef3f951fc514.js-vedi-vibe-config.b7c7c5470779.js';
+const CACHE = 'carousel-studio-app.ee0cb8735568.js-style-profiles.d35ea5fbe1ef.js-text-blocks.14988ccfe0da.js-writing-help.6c7dceee0060.js-vedi-vibe.ef3f951fc514.js-vedi-vibe-config.b7c7c5470779.js';
 const ASSETS = [
   "./",
   "./index.html",
-  "./app.93572dfb1405.js",
-  "./styles.45119bc484c2.css",
-  "./style-profiles.b9a6f54488b6.js",
-  "./writing-help.970ff0b06ed6.js",
+  "./app.ee0cb8735568.js",
+  "./styles.8f699810bc98.css",
+  "./style-profiles.d35ea5fbe1ef.js",
+  "./text-blocks.14988ccfe0da.js",
+  "./writing-help.6c7dceee0060.js",
   "./vedi-vibe.ef3f951fc514.js",
   "./vedi-vibe-config.b7c7c5470779.js",
   "./assets/writing-carousels/CHATGPT_PROMPT.acb331a0ca48.txt",
   "./assets/writing-carousels/SKILL.84035a04d393.md",
-  "./assets/writing-carousels/STUDIO_OUTPUT.2d7f5dc404d0.txt",
+  "./assets/writing-carousels/STUDIO_OUTPUT.9c654bcb8c0f.txt",
   "./manifest.webmanifest",
   "./favicon.svg",
   "./assets/vendor/jszip.min.js",

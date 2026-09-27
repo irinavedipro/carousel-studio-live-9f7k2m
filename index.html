@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./assets/fonts/fonts.css">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="stylesheet" href="./styles.45119bc484c2.css">
+  <link rel="stylesheet" href="./styles.8f699810bc98.css">
 </head>
 <body>
   <main class="studio-shell">
@@ -144,12 +144,12 @@
     <div id="manualPromptWrap" hidden><label for="manualWritingPrompt">Полный промпт для ручного копирования</label><textarea id="manualWritingPrompt" rows="6" readonly></textarea></div>
     <p id="writingHelpStatus" role="status" aria-live="polite"></p>
     <details class="text-help"><summary>Установка навыка и другие форматы</summary><p>Кнопка скачивает ZIP с папкой навыка. Он предназначен для AI-инструментов с поддержкой навыков, например Codex или Claude. Установка зависит от инструмента и не происходит автоматически.</p><p>В Claude: Customize → Skills → + → Create skill → Upload a skill. Загрузите ZIP и включите навык. В Codex: распакуйте папку навыка в хранилище навыков своего проекта или попросите своего агента помочь установить её. Если не пользуетесь навыками, просто скопируйте промпт в обычный чат.</p><button class="secondary-action full-button" id="downloadWritingPrompt" type="button">Скачать промпт · TXT</button><button class="ghost-button full-button" id="downloadOriginalSkill" type="button">Исходный SKILL.md</button><p>В ZIP — исходный навык и отдельно помеченное дополнение для Studio. Личные документы Ирины не включены. <a href="https://developers.openai.com/codex/skills" target="_blank" rel="noopener noreferrer">Инструкция Codex ↗</a> · <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude" target="_blank" rel="noopener noreferrer">Инструкция Claude ↗</a></p></details>
-    <details class="text-help"><summary>Как текст попадёт на карточки</summary><p>Между карточками — строка из трёх дефисов (---). Первая строка — заголовок, остальные — пояснение. От 1 до 10 карточек, число определяет смысл. Сейчас на карточке два текстовых блока, не отдельный третий крючок. Вместимость зависит от выбранного шрифта: текст и переносы можно менять в редакторе.</p></details>
+    <details class="text-help"><summary>Как текст попадёт на карточки</summary><p>Между карточками — строка из трёх дефисов (---). Первая строка — заголовок, остальные — пояснение. От 1 до 10 карточек, число определяет смысл. После выбора шрифтов в редакторе можно нажать «Добавить текст» и вставить отдельный крючок или ещё один текстовый блок. Они не обязательны и не создаются автоматически из третьего абзаца. Вместимость зависит от выбранного шрифта: текст и переносы можно менять в редакторе.</p></details>
     <button class="secondary-action full-button" id="returnWithPreparedText" type="button">Вернуться и вставить готовый текст</button>
     <p class="input-help">Эта кнопка только включает режим готовых карточек. Ваш текст и фото не заменяются. Studio не отправляет их в AI; в своём чате передавайте только материалы, которыми готовы поделиться.</p>
   </dialog>
   <p class="draft-status" id="draftStatus" role="status">Черновик хранится на этом устройстве</p>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./assets/vendor/jszip.min.js"></script><script src="./style-profiles.b9a6f54488b6.js"></script><script src="./vedi-vibe.ef3f951fc514.js"></script><script src="./vedi-vibe-config.b7c7c5470779.js"></script><script src="./app.93572dfb1405.js"></script><script src="./writing-help.970ff0b06ed6.js"></script>
+  <script src="./assets/vendor/jszip.min.js"></script><script src="./text-blocks.14988ccfe0da.js"></script><script src="./style-profiles.d35ea5fbe1ef.js"></script><script src="./vedi-vibe.ef3f951fc514.js"></script><script src="./vedi-vibe-config.b7c7c5470779.js"></script><script src="./app.ee0cb8735568.js"></script><script src="./writing-help.6c7dceee0060.js"></script>
 </body>
 </html>
