@@ -10,13 +10,17 @@
   <link rel="stylesheet" href="./assets/fonts/fonts.css">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="stylesheet" href="./styles.631fb9fc66c9.css">
+  <link rel="stylesheet" href="./styles.759eccace4ae.css">
 </head>
 <body>
   <main class="studio-shell">
     <section class="screen start-screen" id="screenStart" aria-labelledby="startHeading">
       <header class="brand-header"><span class="brand-mark">C</span><span>Carousel Studio</span><button class="ghost-button" id="openDemo" type="button">Посмотреть демо</button></header>
       <div class="resume-draft" id="resumeDraft" hidden><div><strong>У вас есть сохранённая карусель</strong><span>Фотографии, текст и оформление на этом устройстве</span></div><button class="primary-action" id="resumeProject" type="button">Продолжить</button><button class="ghost-button" id="newProject" type="button">Новая карусель</button></div>
+      <section class="style-starter" id="styleStarter" aria-label="Сохранённый стиль">
+        <div><strong id="savedStyleName">Ваш стиль — для следующих каруселей</strong><p id="savedStyleSummary">Загрузите файл стиля или сохраните оформление в редакторе. Фото и тексты в него не входят.</p><div class="style-colors" id="savedStyleColors" aria-hidden="true"></div></div>
+        <div class="style-starter-actions"><button class="primary-action" id="useSavedStyle" type="button" hidden>Создать в этом стиле</button><button class="ghost-button" id="openSavedStyle" type="button">Загрузить стиль</button><button class="ghost-button" id="clearSelectedStyle" type="button" hidden>Выбрать шрифты заново</button></div>
+      </section>
       <div class="start-layout">
         <section class="start-copy">
           <p class="eyebrow">ШАГ 1 · ВАШ МАТЕРИАЛ</p>
@@ -112,8 +116,22 @@
   <dialog class="palette-dialog" id="paletteDialog"><button class="dialog-close" id="closePalette" type="button" aria-label="Закрыть"><span class="material-symbols-rounded">close</span></button><p class="dialog-label">Своя палитра</p><h2>Не нужно быть дизайнером</h2><p>Загрузите скриншот палитры из Pinterest — четыре цвета выберутся автоматически. Пипетки ниже нужны только для ручной правки.</p><button class="primary-action full-button" id="importPaletteFromDialog" type="button">Загрузить скриншот палитры</button><div class="custom-colors"><label>Светлый<input id="customLight" type="color" value="#f3ecdf"></label><label>Акцент<input id="customAccent" type="color" value="#8c2f39"></label><label>Спокойный<input id="customMuted" type="color" value="#6a6a5d"></label><label>Тёмный<input id="customDark" type="color" value="#252a2f"></label></div><button class="secondary-action full-button" id="applyCustomPalette" type="button">Применить эти цвета</button></dialog>
 <dialog class="feed-dialog" id="feedDialog" aria-labelledby="feedHeading"><button class="dialog-close" id="closeFeed" type="button" aria-label="Закрыть">×</button><p class="dialog-label">Предпросмотр</p><h2 id="feedHeading">Как в ленте</h2><p class="feed-note">Макет поста Instagram, не публикация. На карточках — готовые изображения.</p><p id="feedStatus" role="status"></p><article class="feed-post" id="feedPost" hidden><header class="feed-profile"><span class="feed-avatar" aria-hidden="true">В</span><strong>Ваш профиль</strong><span aria-hidden="true">···</span></header><div class="feed-media" id="feedMedia"><img id="feedImage" alt="" draggable="false"><span id="feedCounter" class="feed-counter" role="status" aria-live="polite"></span></div><div class="feed-post-footer"><div class="feed-icons" aria-hidden="true"><span class="feed-icon-group"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><svg viewBox="0 0 24 24"><path d="M21 11.5a9 9 0 0 1-9 9 9.7 9.7 0 0 1-4-.9L3 21l1.4-4.8A9 9 0 1 1 21 11.5Z"/></svg><svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4 20-7ZM22 2 11 13"/></svg></span><svg viewBox="0 0 24 24"><path d="M5 3h14v19l-7-5-7 5V3Z"/></svg></div><div id="feedDots" class="feed-dots" aria-hidden="true"></div><p><strong>Ваш профиль</strong> Ваша готовая карусель</p></div></article><div class="feed-navigation" id="feedNavigation" hidden><button class="icon-button" id="feedPrevious" type="button" aria-label="Предыдущая карточка">←</button><span>Листайте свайпом или стрелками</span><button class="icon-button" id="feedNext" type="button" aria-label="Следующая карточка">→</button></div><button class="primary-action full-button" id="feedSave" type="button" disabled>Сохранить карусель</button><button class="secondary-action full-button" id="returnFromFeed" type="button">Вернуться к правкам</button></dialog>
   <dialog class="save-dialog" id="saveDialog" aria-labelledby="saveHeading"><button class="dialog-close" id="closeSave" type="button" aria-label="Закрыть"><span class="material-symbols-rounded">close</span></button><p class="dialog-label">PNG · 1080 × 1350</p><h2 id="saveHeading">Сохранить карусель</h2><p id="saveStatus" role="status">Подготовим все карточки.</p><button class="primary-action full-button" id="shareCarousel" type="button"><span class="material-symbols-rounded">ios_share</span>Сохранить через меню телефона</button><p id="shareHelp" class="save-help">Выберите приложение или сохранение в системном меню.</p><button class="secondary-action full-button" id="prepareIndividual" type="button">Повторить подготовку</button><div class="save-links" id="saveLinks"></div><button class="quiet-download" id="downloadZip" type="button">Дополнительно: скачать ZIP</button><p class="save-help" id="saveHelp">PNG обычно находятся в «Загрузках» или «Файлах», не обязательно в галерее. Если файлы не появились, нажмите на нужную карточку ещё раз.</p></dialog>
+  <dialog class="style-profile-dialog" id="styleProfileDialog" aria-labelledby="styleProfileHeading">
+    <button class="dialog-close" id="closeStyleProfile" type="button" aria-label="Закрыть">×</button>
+    <p class="dialog-label" id="styleProfileSource">Сохранённое оформление</p><h2 id="styleProfileHeading">Мой стиль</h2>
+    <p class="style-profile-note">Шрифты, палитра и макеты обложки, фото- и текстовых слайдов. Без ваших фотографий и текстов.</p>
+    <label class="style-name-label" for="styleProfileName">Название стиля</label><input class="style-name-input" id="styleProfileName" type="text" maxlength="80" value="Мой стиль" autocomplete="off">
+    <div class="style-profile-preview" id="styleProfilePreview" hidden><strong id="styleProfileFonts"></strong><div class="style-colors" id="styleProfileColors" aria-label="Цвета стиля"></div><p>Три макета: обложка · с фото · без фото</p></div>
+    <p id="styleProfileStatus" role="status" aria-live="polite"></p>
+    <button class="primary-action full-button" id="saveStyleProfile" type="button" disabled>Сохранить мой стиль</button>
+    <button class="secondary-action full-button" id="downloadStyleProfile" type="button" disabled>Скачать стиль</button>
+    <button class="secondary-action full-button" id="importStyleProfile" type="button">Загрузить стиль</button>
+    <input id="styleProfileInput" type="file" accept=".json,application/json" hidden>
+    <button class="primary-action full-button" id="useStyleProfile" type="button" disabled>Использовать этот стиль</button>
+    <p class="input-help">На устройстве хранится один «Мой стиль». Файл — резервная копия: его можно перенести в другой браузер или передать другому человеку. Текущая карусель не входит в файл.</p>
+  </dialog>
   <p class="draft-status" id="draftStatus" role="status">Черновик хранится на этом устройстве</p>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./assets/vendor/jszip.min.js"></script><script src="./app.6301201975a1.js"></script>
+  <script src="./assets/vendor/jszip.min.js"></script><script src="./style-profiles.b9a6f54488b6.js"></script><script src="./app.6cf6b7d98379.js"></script>
 </body>
 </html>
