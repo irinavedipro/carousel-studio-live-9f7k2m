@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./assets/fonts/fonts.css">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="stylesheet" href="./styles.6833ab8e8c2c.css">
+  <link rel="stylesheet" href="./styles.c15d0a62d420.css">
 </head>
 <body>
   <main class="studio-shell">
@@ -34,6 +34,9 @@
           <div class="start-card">
             <label class="field-heading" for="sourceText"><span><strong>2. Текст карусели</strong><small>Вставьте единым полотном — разбивку можно будет исправить</small></span></label>
             <textarea id="sourceText" rows="8" placeholder="Вставьте сюда весь текст будущей карусели"></textarea>
+            <label class="text-only-option"><input id="preparedTextToggle" type="checkbox"><span>Текст уже разделён на карточки</span></label>
+            <p class="input-help">Можно вставить текст целиком — сайт предложит техническую разбивку, не AI-редактуру. Вы сможете править её и сам текст на карточках.</p>
+            <details class="text-help"><summary>Если текст уже подготовлен</summary><p>Включите опцию выше. Пустая строка — новая карточка; первая строка — заголовок, следующие — пояснение. Обычный Enter сохраняет перенос. Мы не будем дробить длинные абзацы: вместимость проверим в выбранном стиле.</p></details>
             <div class="start-footer"><span id="startHint">Добавьте фото и текст</span><button class="primary-action" id="startProject" type="button" disabled>Разбить на карточки <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button></div>
           </div>
         </section>
@@ -48,6 +51,7 @@
     <section class="screen split-screen" id="screenSplit" hidden aria-labelledby="splitHeading">
       <header class="section-header"><button class="icon-button" id="backToStart" type="button" aria-label="Назад к материалам"><span class="material-symbols-rounded" aria-hidden="true">arrow_back</span></button><div><p>Шаг 2</p><h1 id="splitHeading">Проверьте разбивку</h1></div><button class="text-button" id="confirmSplit" type="button">К шрифтам</button></header>
       <p class="section-lead">Количество частей станет количеством карточек. Точки в конце визуальных заголовков мы скроем, исходный текст сохраним.</p>
+      <p class="section-lead" id="splitModeHint"></p>
       <div class="split-workspace">
         <section class="source-panel">
           <div class="field-heading"><div><strong>Ваши фотографии</strong><span>Нажмите, чтобы выбрать обложку</span></div><button class="mini-button" id="addMorePhotos" type="button"><span class="material-symbols-rounded">add</span> Ещё</button></div>
@@ -101,11 +105,14 @@
     </section>
   </main>
 
+  <dialog id="textLimitDialog"><h2>В тексте больше 10 карточек</h2><p id="textLimitMessage"></p><button class="secondary-action full-button" id="returnToText" type="button">Вернуться к тексту</button><button class="primary-action full-button" id="combineTextTail" type="button">Объединить последние части в 10-ю</button><p class="input-help">Объединённая карточка может оказаться слишком плотной. Исходный текст останется в черновике.</p></dialog>
+  <dialog id="textFitDialog"><button class="dialog-close" id="closeTextFit" type="button" aria-label="Закрыть">×</button><h2>Проверьте текст на карточке</h2><p id="textFitMessage"></p><button class="primary-action full-button" id="splitEditorText" type="button">Разделить выбранный блок на две карточки</button><button class="secondary-action full-button" id="mergeEditorText" type="button">Объединить со следующей карточкой</button><button class="secondary-action full-button" id="fitEditorText" type="button">Подобрать размер и расположение</button><button class="secondary-action full-button" id="editTextManually" type="button">Править прямо на карточке</button><p class="input-help">Ничего не обрезаем и не переписываем. Разделение и объединение меняют только выбранные карточки. Подбор не уменьшает текст ниже 48 px в PNG.</p></dialog>
+
   <dialog class="info-dialog" id="infoDialog"><button class="dialog-close" id="closeInfo" type="button" aria-label="Закрыть"><span class="material-symbols-rounded">close</span></button><p class="dialog-label">Текущая пара</p><h2 id="dialogPairName"></h2><p id="dialogPairText"></p></dialog>
   <dialog class="palette-dialog" id="paletteDialog"><button class="dialog-close" id="closePalette" type="button" aria-label="Закрыть"><span class="material-symbols-rounded">close</span></button><p class="dialog-label">Своя палитра</p><h2>Не нужно быть дизайнером</h2><p>Загрузите скриншот палитры из Pinterest — четыре цвета выберутся автоматически. Пипетки ниже нужны только для ручной правки.</p><button class="primary-action full-button" id="importPaletteFromDialog" type="button">Загрузить скриншот палитры</button><div class="custom-colors"><label>Светлый<input id="customLight" type="color" value="#f3ecdf"></label><label>Акцент<input id="customAccent" type="color" value="#8c2f39"></label><label>Спокойный<input id="customMuted" type="color" value="#6a6a5d"></label><label>Тёмный<input id="customDark" type="color" value="#252a2f"></label></div><button class="secondary-action full-button" id="applyCustomPalette" type="button">Применить эти цвета</button></dialog>
   <dialog class="save-dialog" id="saveDialog"><button class="dialog-close" id="closeSave" type="button" aria-label="Закрыть"><span class="material-symbols-rounded">close</span></button><p class="dialog-label">Экспорт 1080 × 1350</p><h2>Сохранить карусель</h2><p id="saveStatus">Подготовим все карточки и предложим лучший способ для вашего браузера.</p><button class="primary-action full-button" id="shareCarousel" type="button"><span class="material-symbols-rounded">ios_share</span>Поделиться изображениями</button><button class="secondary-action full-button" id="prepareIndividual" type="button">Сохранить по одной</button><div class="save-links" id="saveLinks"></div><button class="quiet-download" id="downloadZip" type="button">Дополнительно: скачать ZIP</button><p class="save-help" id="saveHelp">Если открылся браузерный список загрузок, ищите файлы в папке «Загрузки» или «Файлы».</p></dialog>
   <p class="draft-status" id="draftStatus" role="status">Черновик хранится на этом устройстве</p>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./assets/vendor/jszip.min.js"></script><script src="./app.2efb5d8b7b14.js"></script>
+  <script src="./assets/vendor/jszip.min.js"></script><script src="./app.130eb87913ed.js"></script>
 </body>
 </html>
