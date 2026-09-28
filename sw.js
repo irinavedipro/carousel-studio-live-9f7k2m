@@ -1,9 +1,9 @@
-const CACHE = 'carousel-studio-app.a1afb2901c98.js-style-profiles.d35ea5fbe1ef.js-text-blocks.14988ccfe0da.js-writing-help.6c7dceee0060.js-vedi-vibe.ef3f951fc514.js-vedi-vibe-config.b7c7c5470779.js';
+const CACHE = 'carousel-studio-app.b974487c3b6b.js-style-profiles.d35ea5fbe1ef.js-text-blocks.14988ccfe0da.js-writing-help.6c7dceee0060.js-vedi-vibe.ef3f951fc514.js-vedi-vibe-config.b7c7c5470779.js';
 const ASSETS = [
   "./",
   "./index.html",
-  "./app.a1afb2901c98.js",
-  "./styles.73f9279b0304.css",
+  "./app.b974487c3b6b.js",
+  "./styles.4809d8a6ab65.css",
   "./style-profiles.d35ea5fbe1ef.js",
   "./text-blocks.14988ccfe0da.js",
   "./writing-help.6c7dceee0060.js",
