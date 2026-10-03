@@ -1,14 +1,14 @@
-const CACHE = 'carousel-studio-app.ce0e288a8612.js-style-profiles.d35ea5fbe1ef.js-text-blocks.14988ccfe0da.js-writing-help.6c7dceee0060.js-vedi-vibe.a64246dc1649.js-vedi-vibe-config.33b8282fd045.js';
+const CACHE = 'carousel-studio-app.2d92a6067321.js-style-profiles.d35ea5fbe1ef.js-text-blocks.14988ccfe0da.js-writing-help.6c7dceee0060.js-vedi-vibe.104bcd79e8dd.js-vedi-vibe-config.e410fd939e81.js';
 const ASSETS = [
   "./",
   "./index.html",
-  "./app.ce0e288a8612.js",
-  "./styles.a984180c144a.css",
+  "./app.2d92a6067321.js",
+  "./styles.52ed0e246fb6.css",
   "./style-profiles.d35ea5fbe1ef.js",
   "./text-blocks.14988ccfe0da.js",
   "./writing-help.6c7dceee0060.js",
-  "./vedi-vibe.a64246dc1649.js",
-  "./vedi-vibe-config.33b8282fd045.js",
+  "./vedi-vibe.104bcd79e8dd.js",
+  "./vedi-vibe-config.e410fd939e81.js",
   "./assets/writing-carousels/CHATGPT_PROMPT.acb331a0ca48.txt",
   "./assets/writing-carousels/SKILL.84035a04d393.md",
   "./assets/writing-carousels/STUDIO_OUTPUT.9c654bcb8c0f.txt",
@@ -67,7 +67,8 @@ const ASSETS = [
   "./assets/fonts/viaodalibre-0.woff2",
   "./assets/fonts/wixmadefordisplay-0.woff2",
   "./assets/fonts/yesevaone-0.woff2",
-  "./assets/oscar-avatar.png"
+  "./assets/oscar-avatar.png",
+  "./assets/irina-microphone.jpg"
 ];
 
 self.addEventListener('install', event => {
