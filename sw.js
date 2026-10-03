@@ -1,24 +1,21 @@
-const CACHE = 'carousel-studio-app.b974487c3b6b.js-style-profiles.d35ea5fbe1ef.js-text-blocks.14988ccfe0da.js-writing-help.6c7dceee0060.js-vedi-vibe.ef3f951fc514.js-vedi-vibe-config.b7c7c5470779.js';
+const CACHE = 'carousel-studio-app.ce0e288a8612.js-style-profiles.d35ea5fbe1ef.js-text-blocks.14988ccfe0da.js-writing-help.6c7dceee0060.js-vedi-vibe.a64246dc1649.js-vedi-vibe-config.33b8282fd045.js';
 const ASSETS = [
   "./",
   "./index.html",
-  "./app.b974487c3b6b.js",
-  "./styles.4809d8a6ab65.css",
+  "./app.ce0e288a8612.js",
+  "./styles.a984180c144a.css",
   "./style-profiles.d35ea5fbe1ef.js",
   "./text-blocks.14988ccfe0da.js",
   "./writing-help.6c7dceee0060.js",
-  "./vedi-vibe.ef3f951fc514.js",
-  "./vedi-vibe-config.b7c7c5470779.js",
+  "./vedi-vibe.a64246dc1649.js",
+  "./vedi-vibe-config.33b8282fd045.js",
   "./assets/writing-carousels/CHATGPT_PROMPT.acb331a0ca48.txt",
   "./assets/writing-carousels/SKILL.84035a04d393.md",
   "./assets/writing-carousels/STUDIO_OUTPUT.9c654bcb8c0f.txt",
   "./manifest.webmanifest",
   "./favicon.svg",
+  "./assets/vedi-spiral.svg",
   "./assets/vendor/jszip.min.js",
-  "./assets/editorial/portrait-sea.webp",
-  "./assets/editorial/rocky-coast.webp",
-  "./assets/editorial/botanical-shadow.webp",
-  "./assets/editorial/sea-sunset.webp",
   "./assets/fonts/alumnisanspinstripe-0.woff2",
   "./assets/fonts/alumnisanspinstripe-1.woff2",
   "./assets/fonts/badscript-0.woff2",
@@ -69,7 +66,8 @@ const ASSETS = [
   "./assets/fonts/unbounded-0.woff2",
   "./assets/fonts/viaodalibre-0.woff2",
   "./assets/fonts/wixmadefordisplay-0.woff2",
-  "./assets/fonts/yesevaone-0.woff2"
+  "./assets/fonts/yesevaone-0.woff2",
+  "./assets/oscar-avatar.png"
 ];
 
 self.addEventListener('install', event => {
